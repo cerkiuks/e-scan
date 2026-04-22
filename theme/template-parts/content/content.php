@@ -1,4 +1,4 @@
-<?php
+git branch -M main<?php
 /**
  * Template part for displaying posts
  *

@@ -10,6 +10,9 @@
  * variables.
  */
 @theme {
+
+	/* Disable all default breakpoints */
+	--breakpoint-*: initial;
 	/**
 	 * These theme variables use CSS variables set by WordPress using values
 	 * from your `theme.json` file.
@@ -48,3 +51,10 @@
 	 * Add your theme below:
 	 */
 }
+
+@custom-variant 2xl (@media (max-width: 1535px));
+@custom-variant xl (@media (max-width: 1279px));
+@custom-variant lg (@media (max-width: 1023px));
+@custom-variant md (@media (max-width: 767px));
+@custom-variant sm (@media (max-width: 639px));
+@custom-variant vsm (@media (max-width: 370px));
