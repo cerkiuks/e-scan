@@ -1,0 +1,87 @@
+/**
+ * Homepage about section.
+ */
+
+.about {
+	--about-primary: #344966;
+	--about-muted: #777779;
+	--about-secondary: #b4cbeb;
+
+	@apply bg-white py-36 lg:py-24;
+}
+
+.about__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6;
+}
+
+.about__grid {
+	@apply grid grid-cols-[1.15fr_1fr] items-start gap-28 lg:grid-cols-1 lg:gap-16;
+}
+
+.about__eyebrow {
+	@apply text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--about-muted);
+}
+
+.about__title {
+	@apply mt-5 mb-8 text-[50px] leading-[1.04] font-bold lg:text-[38px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--about-primary);
+}
+
+.about__title-muted {
+	@apply font-normal italic;
+	color: var(--about-muted);
+}
+
+.about__text {
+	@apply text-base leading-[1.75] lg:text-[15px];
+	color: var(--about-muted);
+}
+
+.about__text--first {
+	@apply mb-5;
+}
+
+.about__text--second {
+	@apply mb-10;
+}
+
+.about__link {
+	@apply inline-flex items-center gap-2 border-b-2 pb-0.5 text-sm font-semibold transition-colors;
+	color: var(--about-primary);
+	border-color: var(--about-primary);
+}
+
+.about__link:hover {
+	border-color: var(--about-secondary);
+}
+
+.about__link-icon {
+	@apply shrink-0;
+}
+
+.about__highlights {
+	@apply grid grid-cols-2 gap-px;
+	background-color: rgb(180 203 235 / 0.25);
+}
+
+.about__highlight {
+	@apply bg-white p-10 lg:p-8;
+}
+
+.about__highlight-value {
+	@apply mb-2 text-[60px] leading-none font-bold lg:text-[48px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--about-primary);
+}
+
+.about__highlight-label {
+	@apply text-sm font-semibold;
+	color: var(--about-primary);
+}
+
+.about__highlight-sub {
+	@apply mt-1 text-xs;
+	color: var(--about-muted);
+}

@@ -1,0 +1,12 @@
+---
+description: Load theme project skill before WordPress/Tailwind/theme work
+alwaysApply: true
+---
+
+# Theme project skill
+
+Before doing meaningful work on this theme (WordPress templates, Tailwind, ACF, `npm run prod`, WP-CLI pages), read:
+
+`.cursor/skills/project-skill-template/SKILL.md`
+
+Follow the rules there by default.

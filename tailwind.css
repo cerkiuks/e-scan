@@ -60,8 +60,16 @@
  * add styles for WooCommerce using WooCommerce-specific class names, ensuring
  * that files for other WordPress plugins or JavaScript components could be
  * included in any order because they also use library-specific class names.
+ *
+ * Explicit imports (not `@import-glob` alone) so `npm run watch` always
+ * includes new component files after they are added.
  */
-@import-glob "./tailwind/custom/components/**/*.css";
+@import "./tailwind/custom/components/components.css";
+@import "./tailwind/custom/components/about.css";
+@import "./tailwind/custom/components/footer.css";
+@import "./tailwind/custom/components/header.css";
+@import "./tailwind/custom/components/hero.css";
+@import "./tailwind/custom/components/philosophy.css";
 
 /**
  * Add Tailwind Typography.

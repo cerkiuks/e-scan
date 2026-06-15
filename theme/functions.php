@@ -77,11 +77,22 @@ if ( ! function_exists( 'optimalu_e_scan_setup' ) ) :
 		 */
 		add_theme_support( 'post-thumbnails' );
 
-		// This theme uses wp_nav_menu() in two locations.
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'      => 40,
+				'width'       => 200,
+				'flex-height' => true,
+				'flex-width'  => true,
+			)
+		);
+
+		// This theme uses wp_nav_menu() in three locations.
 		register_nav_menus(
 			array(
 				'menu-1' => __( 'Primary', 'optimalu-e-scan' ),
 				'menu-2' => __( 'Footer Menu', 'optimalu-e-scan' ),
+				'menu-3' => __( 'Footer Legal', 'optimalu-e-scan' ),
 			)
 		);
 
@@ -119,6 +130,35 @@ if ( ! function_exists( 'optimalu_e_scan_setup' ) ) :
 	}
 endif;
 add_action( 'after_setup_theme', 'optimalu_e_scan_setup' );
+
+/**
+ * Add shared classes to primary navigation links.
+ *
+ * @param array    $atts      Link attributes.
+ * @param WP_Post  $menu_item Menu item object.
+ * @param stdClass $args      Menu arguments.
+ * @param int      $depth     Menu depth.
+ * @return array
+ */
+function optimalu_e_scan_nav_menu_link_attributes( $atts, $menu_item, $args, $depth ) {
+	if ( 0 !== $depth || ! isset( $args->theme_location ) ) {
+		return $atts;
+	}
+
+	$existing = isset( $atts['class'] ) ? $atts['class'] . ' ' : '';
+	$classes  = array(
+		'menu-1' => 'site-header__menu-link',
+		'menu-2' => 'site-footer__nav-link',
+		'menu-3' => 'site-footer__legal-link',
+	);
+
+	if ( isset( $classes[ $args->theme_location ] ) ) {
+		$atts['class'] = $existing . $classes[ $args->theme_location ];
+	}
+
+	return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'optimalu_e_scan_nav_menu_link_attributes', 10, 4 );
 
 /**
  * Register widget area.
@@ -224,3 +264,8 @@ require get_template_directory() . '/inc/template-functions.php';
  * Registers local ACF field groups used by theme templates.
  */
 require get_template_directory() . '/inc/acf-fields.php';
+
+/**
+ * Footer Customizer settings.
+ */
+require get_template_directory() . '/inc/footer-customizer.php';

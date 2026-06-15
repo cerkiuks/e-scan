@@ -1,0 +1,124 @@
+/**
+ * Site footer layout and menus.
+ */
+
+#colophon.site-footer {
+	--footer-secondary: #b4cbeb;
+	background-color: #2c3e50;
+
+	@apply py-20 text-white lg:py-16;
+}
+
+.site-footer__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6;
+}
+
+.site-footer__grid {
+	@apply mb-12 grid grid-cols-4 gap-8 lg:grid-cols-2 lg:gap-12 md:grid-cols-1;
+}
+
+.site-footer__brand {
+	@apply lg:col-span-1;
+}
+
+.site-footer__logo-link {
+	@apply inline-flex;
+}
+
+.site-footer__logo {
+	@apply mb-5 h-10 w-auto object-contain;
+}
+
+.site-footer__tagline {
+	@apply max-w-[260px] text-sm leading-relaxed;
+	color: rgb(255 255 255 / 0.5);
+}
+
+.site-footer__heading {
+	@apply mb-5 text-sm font-bold tracking-wider uppercase;
+}
+
+.site-footer__menu,
+.site-footer__legal-menu {
+	@apply list-none;
+}
+
+.site-footer__menu {
+	@apply space-y-3;
+}
+
+.site-footer__nav-link {
+	@apply text-sm transition-colors;
+	color: rgb(255 255 255 / 0.6);
+}
+
+.site-footer__nav-link:hover {
+	@apply text-white;
+}
+
+.site-footer__contact-list {
+	@apply space-y-4;
+}
+
+.site-footer__contact-item {
+	@apply flex items-center gap-3;
+}
+
+.site-footer__contact-item--address {
+	@apply items-start;
+}
+
+.site-footer__contact-icon {
+	@apply mt-0.5 shrink-0;
+	color: var(--footer-secondary);
+}
+
+.site-footer__contact-item:not(.site-footer__contact-item--address) .site-footer__contact-icon {
+	@apply mt-0;
+}
+
+.site-footer__contact-item p,
+.site-footer__contact-link {
+	@apply text-sm transition-colors;
+	color: rgb(255 255 255 / 0.6);
+}
+
+.site-footer__contact-link:hover {
+	@apply text-white;
+}
+
+.site-footer__hours {
+	@apply space-y-2 text-sm;
+	color: rgb(255 255 255 / 0.6);
+}
+
+.site-footer__hours-time {
+	@apply font-semibold;
+	color: rgb(255 255 255 / 0.8);
+}
+
+.site-footer__hours-day {
+	@apply mt-3;
+}
+
+.site-footer__bar {
+	@apply flex flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-col;
+}
+
+.site-footer__copyright {
+	@apply text-xs;
+	color: rgb(255 255 255 / 0.3);
+}
+
+.site-footer__legal-menu {
+	@apply flex flex-wrap gap-6;
+}
+
+.site-footer__legal-link {
+	@apply text-xs transition-colors;
+	color: rgb(255 255 255 / 0.3);
+}
+
+.site-footer__legal-link:hover {
+	color: rgb(255 255 255 / 0.6);
+}

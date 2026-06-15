@@ -1,0 +1,169 @@
+/**
+ * Homepage hero section.
+ */
+
+@import url("https://api.fontshare.com/v2/css?f[]=cormorant-garamond@1,700,600,500,400&display=swap");
+
+.hero {
+	--hero-primary: #344966;
+	--hero-secondary: #b4cbeb;
+	--hero-accent: #ecdcb0;
+
+	@apply relative flex min-h-screen flex-col overflow-hidden;
+	background-color: var(--hero-primary);
+}
+
+.hero__background {
+	@apply pointer-events-none absolute inset-0;
+	background: linear-gradient(to bottom right, #3d5578, #344966, #1e3148);
+}
+
+.hero__dots {
+	@apply pointer-events-none absolute top-36 right-6 h-[88px] w-[56px] opacity-[0.18] lg:hidden;
+	background-image: radial-gradient(circle, var(--hero-secondary) 3px, transparent 3px);
+	background-size: 16px 16px;
+}
+
+.hero__divider {
+	@apply pointer-events-none absolute top-0 bottom-0 left-[55%] w-px bg-white/5 lg:hidden;
+}
+
+.hero__content {
+	@apply relative mx-auto flex w-full max-w-[1280px] flex-1 items-center px-14 pt-32 pb-0 lg:px-6 lg:pt-28;
+}
+
+.hero__grid {
+	@apply grid w-full grid-cols-[minmax(0,1fr)_340px] items-end gap-20 lg:grid-cols-1 lg:items-center lg:gap-10;
+}
+
+.hero__eyebrow {
+	@apply mb-8 text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--hero-secondary);
+}
+
+.hero__title {
+	@apply mb-9 text-[78px] leading-[0.91] font-bold text-white lg:text-[66px] md:text-[52px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.hero__title-accent {
+	@apply italic;
+	color: var(--hero-accent);
+}
+
+.hero__title-muted {
+	@apply font-bold text-white/60;
+}
+
+.hero__description {
+	@apply mb-10 max-w-[420px] text-[17px] leading-relaxed lg:text-base;
+	color: rgb(255 255 255 / 0.5);
+}
+
+.hero__actions {
+	@apply flex flex-wrap items-center gap-5;
+}
+
+.hero__button {
+	@apply inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-bold tracking-wide transition-colors;
+	background-color: #fff;
+	color: var(--hero-primary);
+}
+
+.hero__button:hover {
+	background-color: var(--hero-secondary);
+}
+
+.hero__button-icon {
+	@apply shrink-0;
+}
+
+.hero__secondary-link {
+	@apply border-b border-white/20 pb-0.5 text-sm transition-colors;
+	color: rgb(255 255 255 / 0.45);
+}
+
+.hero__secondary-link:hover {
+	@apply border-white/50;
+	color: rgb(255 255 255 / 0.8);
+}
+
+.hero__media {
+	@apply relative self-end pb-0 lg:mx-auto lg:self-center;
+}
+
+.hero__media-frame {
+	@apply relative h-[490px] w-[340px] overflow-hidden bg-[#2a3d55] lg:h-[420px] lg:w-full lg:max-w-[340px];
+	border-radius: 180px 180px 6px 6px;
+}
+
+.hero__media-image {
+	@apply h-full w-full object-cover;
+}
+
+.hero__media-overlay {
+	@apply absolute inset-0;
+	background-color: rgb(52 73 102 / 0.15);
+}
+
+.hero__appointment-card {
+	@apply absolute -left-[72px] bottom-24 block bg-white px-5 py-4 shadow-2xl lg:hidden;
+}
+
+.hero__appointment-label {
+	@apply mb-0.5 text-[9px] font-bold tracking-[0.3em] uppercase;
+	color: rgb(52 73 102 / 0.5);
+}
+
+.hero__appointment-value {
+	@apply text-xl leading-none font-bold;
+	color: var(--hero-primary);
+}
+
+.hero__media-accent {
+	@apply absolute -bottom-1.5 left-3 right-3 h-[3px] lg:left-6 lg:right-6;
+	background-color: var(--hero-accent);
+	opacity: 0.6;
+}
+
+.hero__stats {
+	@apply relative mt-14 border-t lg:mt-10;
+	border-color: rgb(255 255 255 / 0.08);
+}
+
+.hero__stats-inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6;
+}
+
+.hero__stats-grid {
+	@apply grid grid-cols-4 lg:grid-cols-2;
+}
+
+.hero__stat {
+	@apply px-8 py-6 lg:px-5;
+}
+
+.hero__stat--bordered {
+	@apply border-l;
+	border-color: rgb(255 255 255 / 0.08);
+}
+
+.hero__stat-value {
+	@apply text-3xl leading-none font-bold text-white lg:text-2xl;
+}
+
+.hero__stat-label {
+	@apply mt-1.5 text-[11px] tracking-widest uppercase;
+	color: rgb(255 255 255 / 0.4);
+}
+
+@media (max-width: 767px) {
+	.hero__stat:nth-child(odd) {
+		border-left: 0;
+	}
+
+	.hero__stat:nth-child(even) {
+		@apply border-l;
+		border-color: rgb(255 255 255 / 0.08);
+	}
+}

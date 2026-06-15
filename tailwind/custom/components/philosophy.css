@@ -1,0 +1,126 @@
+/**
+ * Homepage philosophy section.
+ */
+
+@keyframes philosophy-marquee {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+.philosophy {
+	--philosophy-primary: #344966;
+	--philosophy-secondary: #b4cbeb;
+
+	@apply overflow-hidden;
+	background-color: var(--philosophy-primary);
+}
+
+.philosophy__marquee {
+	@apply overflow-hidden border-y py-4;
+	border-color: rgb(255 255 255 / 0.08);
+}
+
+.philosophy__marquee-track {
+	@apply flex w-max;
+	animation: philosophy-marquee 120s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.philosophy__marquee-track {
+		animation: none;
+	}
+}
+
+.philosophy__marquee-group {
+	@apply flex shrink-0 items-center gap-12 whitespace-nowrap;
+}
+
+.philosophy__marquee-item {
+	@apply flex items-center gap-12 text-[11px] font-semibold tracking-[0.3em] uppercase;
+}
+
+.philosophy__marquee-item--light {
+	color: rgb(255 255 255 / 0.6);
+}
+
+.philosophy__marquee-item--accent {
+	color: rgb(180 203 235 / 0.7);
+}
+
+.philosophy__marquee-separator {
+	color: rgb(180 203 235 / 0.2);
+}
+
+.philosophy__intro {
+	@apply mx-auto max-w-[1280px] px-14 py-24 text-center lg:px-6 lg:py-16;
+}
+
+.philosophy__eyebrow {
+	@apply mb-7 text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--philosophy-secondary);
+}
+
+.philosophy__title {
+	@apply mx-auto max-w-3xl text-[50px] leading-[1.08] font-bold text-white lg:text-[30px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.philosophy__title-accent {
+	font-style: italic;
+	color: var(--philosophy-secondary);
+}
+
+.philosophy__description {
+	@apply mx-auto mt-6 max-w-[460px] text-[15px] leading-relaxed;
+	color: rgb(255 255 255 / 0.4);
+}
+
+.philosophy__pillars {
+	@apply mx-auto max-w-[1280px] border-t px-14 lg:px-6;
+	border-color: rgb(255 255 255 / 0.08);
+}
+
+.philosophy__pillars-grid {
+	@apply grid grid-cols-3 md:grid-cols-1;
+}
+
+.philosophy__pillar {
+	@apply px-8 py-10 text-center;
+}
+
+.philosophy__pillar--bordered {
+	@apply md:border-t-0;
+	border-left: 1px solid rgb(255 255 255 / 0.08);
+}
+
+@media (max-width: 767px) {
+	.philosophy__pillar--bordered {
+		border-left: 0;
+		border-top: 1px solid rgb(255 255 255 / 0.08);
+	}
+}
+
+.philosophy__pillar-num {
+	@apply text-[10px] tracking-[0.3em] uppercase;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	color: rgb(180 203 235 / 0.25);
+}
+
+.philosophy__pillar-title {
+	@apply mt-3 mb-2 text-[28px] font-bold text-white;
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.philosophy__pillar-desc {
+	@apply text-sm;
+	color: rgb(255 255 255 / 0.4);
+}
+
+.philosophy__spacer {
+	@apply h-10;
+}
