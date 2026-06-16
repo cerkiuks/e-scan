@@ -1,0 +1,124 @@
+/**
+ * Homepage CT service section.
+ */
+
+.ct {
+	--ct-primary: #344966;
+	--ct-secondary: #b4cbeb;
+	--ct-muted: #777779;
+	--ct-border: #e2e8f0;
+
+	@apply py-36 lg:py-24;
+	background-color: #f4f6f8;
+}
+
+.ct__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6;
+}
+
+.ct__header {
+	@apply mb-16 grid grid-cols-2 items-end gap-8 lg:grid-cols-1;
+}
+
+.ct__eyebrow {
+	@apply text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--ct-muted);
+}
+
+.ct__title {
+	@apply mt-5 text-[50px] leading-[1.04] font-bold lg:text-[38px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--ct-primary);
+}
+
+.ct__header-aside {
+	@apply pb-1 lg:pb-0;
+}
+
+.ct__description {
+	@apply text-[15px] leading-[1.75];
+	color: var(--ct-muted);
+}
+
+.ct__content {
+	@apply grid grid-cols-[2fr_3fr] items-start gap-16 lg:grid-cols-1 lg:gap-8;
+}
+
+.ct__media {
+	@apply relative;
+}
+
+.ct__image-frame {
+	@apply overflow-hidden;
+	aspect-ratio: 3 / 4;
+	background-color: rgb(52 73 102 / 0.8);
+}
+
+.ct__image {
+	@apply h-full w-full object-cover;
+}
+
+.ct__price-card {
+	@apply px-6 py-5;
+	background-color: var(--ct-primary);
+}
+
+.ct__price-label {
+	@apply mb-1 text-[9px] font-bold tracking-[0.35em] uppercase;
+	color: var(--ct-secondary);
+}
+
+.ct__price-value {
+	@apply text-2xl leading-none font-bold text-white;
+}
+
+.ct__price-note {
+	@apply mt-1 text-xs;
+	color: rgb(255 255 255 / 0.35);
+}
+
+.ct__features {
+	border-top: 1px solid var(--ct-border);
+}
+
+.ct__feature {
+	@apply -mx-4 flex gap-6 border-b px-4 py-8 transition-colors;
+	border-color: var(--ct-border);
+}
+
+.ct__feature:hover {
+	background-color: rgb(255 255 255 / 0.7);
+}
+
+.ct__feature-num {
+	@apply mt-0.5 shrink-0 text-[10px] tracking-[0.25em];
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	color: var(--ct-secondary);
+}
+
+.ct__feature-title {
+	@apply mb-1.5 text-base font-bold;
+	color: var(--ct-primary);
+}
+
+.ct__feature-desc {
+	@apply text-sm leading-[1.7];
+	color: var(--ct-muted);
+}
+
+.ct__actions {
+	@apply px-4 pt-8;
+}
+
+.ct__button {
+	@apply inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-semibold text-white transition-colors;
+	background-color: var(--ct-primary);
+}
+
+.ct__button:hover {
+	background-color: #2a3d55;
+}
+
+.ct__button-icon {
+	@apply shrink-0;
+}

@@ -15,6 +15,8 @@ while ( have_posts() ) :
 	get_template_part( 'template-parts/sections/hero' );
 	get_template_part( 'template-parts/sections/about' );
 	get_template_part( 'template-parts/sections/philosophy' );
+	get_template_part( 'template-parts/sections/ct' );
+	get_template_part( 'template-parts/sections/registration' );
 endwhile;
 ?>
 

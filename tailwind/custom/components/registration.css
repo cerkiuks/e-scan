@@ -1,0 +1,212 @@
+/**
+ * Homepage registration section + WP Booking Calendar overrides.
+ */
+
+.home-registration {
+	--registration-primary: #344966;
+	--registration-secondary: #b4cbeb;
+	--registration-muted: #777779;
+	--registration-border: #e2e8f0;
+	--registration-surface: #f4f6f8;
+
+	@apply bg-white py-32 lg:py-20;
+}
+
+.home-registration__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6;
+}
+
+.home-registration__intro {
+	@apply mb-12 text-center;
+}
+
+.home-registration__eyebrow {
+	@apply text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--registration-muted);
+}
+
+.home-registration__title {
+	@apply mt-5 mb-6 text-[48px] leading-[1.04] font-bold lg:text-[36px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--registration-primary);
+}
+
+.home-registration__title-highlight {
+	@apply font-normal italic;
+	color: var(--registration-muted);
+}
+
+.home-registration__description {
+	@apply mx-auto max-w-2xl text-[15px] leading-relaxed;
+	color: var(--registration-muted);
+}
+
+.home-registration__layout {
+	@apply grid grid-cols-[1fr_1.15fr] items-start gap-x-16 gap-y-10 lg:grid-cols-1 lg:gap-y-8;
+}
+
+.home-registration__info {
+	@apply min-w-0;
+}
+
+.home-registration__info-heading {
+	@apply mb-4 text-xl font-bold;
+	color: var(--registration-primary);
+}
+
+.home-registration__info-text {
+	@apply mb-6 text-[15px] leading-relaxed;
+	color: var(--registration-muted);
+}
+
+.home-registration__info-list {
+	@apply mb-8 space-y-3;
+}
+
+.home-registration__info-item {
+	@apply relative pl-5 text-sm leading-relaxed;
+	color: var(--registration-muted);
+}
+
+.home-registration__info-item::before {
+	content: "";
+	@apply absolute top-[0.55em] left-0 h-1.5 w-1.5 rounded-full;
+	background-color: var(--registration-secondary);
+}
+
+.home-registration__faq-link {
+	@apply inline-flex items-center gap-2 border-b-2 pb-0.5 text-sm font-semibold transition-colors;
+	color: var(--registration-primary);
+	border-color: var(--registration-primary);
+}
+
+.home-registration__faq-link:hover {
+	border-color: var(--registration-secondary);
+}
+
+.home-registration__faq-link-icon {
+	@apply shrink-0;
+}
+
+.home-registration__booking {
+	@apply min-w-0;
+}
+
+/* WP Booking Calendar — safe styling only (preserve DOM/layout) */
+
+.home-registration .wpbc_container {
+	@apply m-0 max-w-none p-0;
+}
+
+.home-registration .booking_form {
+	@apply m-0;
+}
+
+.home-registration .wpbc_bfb_form,
+.home-registration .wpbc_wizard__border_container {
+	@apply border p-8 lg:p-6;
+	border-color: var(--registration-border);
+	background-color: var(--registration-surface);
+}
+
+.home-registration .wpbc_wizard_step {
+	@apply p-0;
+}
+
+.home-registration .wpbc__row {
+	@apply mb-0 gap-6;
+}
+
+.home-registration .wpbc__field {
+	@apply min-w-0;
+}
+
+.home-registration .wpbc__row:first-child {
+	@apply flex-col lg:gap-6;
+}
+
+.home-registration .wpbc__row:first-child .wpbc__field {
+	flex-basis: 100% !important;
+}
+
+.home-registration .wpbc_calendar_wraper {
+	@apply inline-block border p-6 lg:block lg:w-full lg:p-4;
+	border-color: var(--registration-border);
+	background-color: #fff;
+}
+
+.home-registration .wpbc_cal_container {
+	@apply max-w-none;
+}
+
+.home-registration .wpbc_calendar_wraper + div {
+	display: none !important;
+}
+
+.home-registration .bfb_element label {
+	@apply mb-2 block text-sm font-semibold;
+	color: var(--registration-primary);
+}
+
+.home-registration .bfb_element > br {
+	@apply hidden;
+}
+
+.home-registration .wpbc_field_description {
+	@apply mt-1 hidden text-xs;
+	color: var(--registration-muted);
+}
+
+.home-registration input[type="text"],
+.home-registration input[type="email"],
+.home-registration input[type="tel"],
+.home-registration select {
+	@apply w-full border px-4 py-3 text-sm;
+	border-color: var(--registration-border);
+	background-color: #fff;
+	color: var(--registration-primary);
+}
+
+.home-registration input[type="text"]:focus,
+.home-registration input[type="email"]:focus,
+.home-registration input[type="tel"]:focus,
+.home-registration select:focus {
+	@apply outline-none;
+	border-color: var(--registration-primary);
+}
+
+.home-registration .wpbc_wrap_select select {
+	@apply appearance-none;
+}
+
+.home-registration .wpbc_inline_checkbox {
+	@apply text-sm leading-relaxed;
+	color: var(--registration-muted);
+}
+
+.home-registration .wpbc_inline_checkbox a {
+	color: var(--registration-primary);
+}
+
+.home-registration .wpbc_button_light,
+.home-registration .wpbc_wizard_step_button {
+	@apply inline-flex cursor-pointer items-center justify-center border-0 px-7 py-3.5 text-sm font-semibold text-white transition-colors;
+	background-color: var(--registration-primary) !important;
+}
+
+.home-registration .wpbc_button_light:hover,
+.home-registration .wpbc_wizard_step_button:hover {
+	background-color: #2a3d55 !important;
+}
+
+.home-registration .wpbc_bfb_divider {
+	@apply hidden;
+}
+
+.home-registration .form_bk_messages {
+	@apply mt-4 text-sm;
+}
+
+.home-registration .ajax_respond_insert {
+	@apply mt-4;
+}
