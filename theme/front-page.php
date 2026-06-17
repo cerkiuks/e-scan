@@ -17,6 +17,8 @@ while ( have_posts() ) :
 	get_template_part( 'template-parts/sections/philosophy' );
 	get_template_part( 'template-parts/sections/ct' );
 	get_template_part( 'template-parts/sections/registration' );
+	get_template_part( 'template-parts/sections/specialists' );
+	get_template_part( 'template-parts/sections/contact' );
 endwhile;
 ?>
 

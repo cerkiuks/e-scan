@@ -92,21 +92,34 @@
 	@apply min-w-0;
 }
 
-/* WP Booking Calendar — safe styling only (preserve DOM/layout) */
+/* WP Booking Calendar — visual overrides only (preserve DOM/layout) */
 
-.home-registration .wpbc_container {
-	@apply m-0 max-w-none p-0;
+.home-registration .wpbc_container,
+.home-registration .wpbc_container_booking_form {
+	@apply m-0 w-full max-w-none p-0;
+	margin-top: 0 !important;
 }
 
 .home-registration .booking_form {
 	@apply m-0;
 }
 
-.home-registration .wpbc_bfb_form,
-.home-registration .wpbc_wizard__border_container {
-	@apply border p-8 lg:p-6;
-	border-color: var(--registration-border);
-	background-color: var(--registration-surface);
+.home-registration .wpbc_container.wpbc_form {
+	--wpbc_form-button-background-color: var(--registration-primary);
+	--wpbc_form-button-text-color: #fff;
+	--wpbc_form-button-size-height: 2.75rem;
+	--wpbc_form-button-size-font-size: 0.875rem;
+	--wpbc_form-button-size-padding-h: 1.5rem;
+	--wpbc_form-button-light-size-height: 2.75rem;
+}
+
+.home-registration .wpbc_bfb_form.wpbc_wizard__border_container {
+	@apply rounded-sm border p-6 lg:p-5;
+	border-color: var(--registration-border) !important;
+	background-color: var(--registration-surface) !important;
+	box-shadow: none !important;
+	font-size: 0.875rem;
+	line-height: 1.5;
 }
 
 .home-registration .wpbc_wizard_step {
@@ -114,25 +127,57 @@
 }
 
 .home-registration .wpbc__row {
-	@apply mb-0 gap-6;
+	@apply mb-0 gap-x-4 gap-y-3;
+	width: 100%;
+}
+
+.home-registration .wpbc__row + .wpbc__row {
+	margin-top: 0.25rem;
 }
 
 .home-registration .wpbc__field {
 	@apply min-w-0;
+	margin: 0.25rem 0 !important;
 }
 
 .home-registration .wpbc__row:first-child {
-	@apply flex-col lg:gap-6;
+	@apply flex-col items-center;
 }
 
 .home-registration .wpbc__row:first-child .wpbc__field {
 	flex-basis: 100% !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.home-registration .wpbc__field.wpbc__cal .bk_calendar_frame {
+	margin: 0 !important;
+}
+
+.home-registration .wpbc_calendar_wraper,
+.home-registration .bk_calendar_frame,
+.home-registration .wpbc_cal_container {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
 }
 
 .home-registration .wpbc_calendar_wraper {
-	@apply inline-block border p-6 lg:block lg:w-full lg:p-4;
-	border-color: var(--registration-border);
-	background-color: #fff;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 17.5rem;
+	margin: 0 auto 0.5rem !important;
+	padding: 0 !important;
+}
+
+.home-registration .wpbc_calendar_wraper .datepick-inline,
+.home-registration .wpbc_calendar_wraper .ui-datepicker-inline {
+	width: 100% !important;
+	margin: 0 auto;
 }
 
 .home-registration .wpbc_cal_container {
@@ -143,9 +188,11 @@
 	display: none !important;
 }
 
+.home-registration .wpbc_container_booking_form .wpbc__field label,
 .home-registration .bfb_element label {
-	@apply mb-2 block text-sm font-semibold;
+	@apply mb-1.5 block text-sm font-semibold leading-snug;
 	color: var(--registration-primary);
+	line-height: 1.4 !important;
 }
 
 .home-registration .bfb_element > br {
@@ -161,10 +208,11 @@
 .home-registration input[type="email"],
 .home-registration input[type="tel"],
 .home-registration select {
-	@apply w-full border px-4 py-3 text-sm;
+	@apply w-full rounded-sm border px-3 py-2.5 text-sm;
 	border-color: var(--registration-border);
 	background-color: #fff;
 	color: var(--registration-primary);
+	min-height: 2.5rem;
 }
 
 .home-registration input[type="text"]:focus,
@@ -180,7 +228,7 @@
 }
 
 .home-registration .wpbc_inline_checkbox {
-	@apply text-sm leading-relaxed;
+	@apply text-xs leading-relaxed;
 	color: var(--registration-muted);
 }
 
@@ -188,15 +236,43 @@
 	color: var(--registration-primary);
 }
 
-.home-registration .wpbc_button_light,
-.home-registration .wpbc_wizard_step_button {
-	@apply inline-flex cursor-pointer items-center justify-center border-0 px-7 py-3.5 text-sm font-semibold text-white transition-colors;
-	background-color: var(--registration-primary) !important;
+.home-registration .wpbc_bfb__btn--primary {
+	display: block;
+	width: 100%;
+	margin-top: 0.5rem;
 }
 
-.home-registration .wpbc_button_light:hover,
-.home-registration .wpbc_wizard_step_button:hover {
-	background-color: #2a3d55 !important;
+.home-registration .wpbc_container.wpbc_form input.wpbc_button_light,
+.home-registration .wpbc_container.wpbc_form input.wpbc_button_light:focus,
+.home-registration .wpbc_container.wpbc_form input.wpbc_button_light:hover,
+.home-registration .wpbc_container .wpbc_button_light,
+.home-registration .wpbc_container .wpbc_button_light:focus,
+.home-registration .wpbc_container .wpbc_button_light:hover,
+.home-registration .wpbc_container.wpbc_container_booking_form .wpbc_button_light,
+.home-registration .wpbc_container.wpbc_container_booking_form .wpbc_button_light:focus,
+.home-registration .wpbc_container.wpbc_container_booking_form .wpbc_button_light:hover,
+.home-registration .wpbc_wizard_step_button {
+	@apply w-full cursor-pointer rounded-sm border-0 px-6 py-2.5 text-sm font-semibold transition-colors;
+	background: var(--registration-primary) !important;
+	color: #fff !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	min-height: 2.75rem;
+	height: auto;
+	line-height: 1.25 !important;
+}
+
+.home-registration .wpbc_container.wpbc_form input.wpbc_button_light:hover,
+.home-registration .wpbc_container.wpbc_form input.wpbc_button_light:focus,
+.home-registration .wpbc_container .wpbc_button_light:hover,
+.home-registration .wpbc_container .wpbc_button_light:focus,
+.home-registration .wpbc_container.wpbc_container_booking_form .wpbc_button_light:hover,
+.home-registration .wpbc_container.wpbc_container_booking_form .wpbc_button_light:focus,
+.home-registration .wpbc_wizard_step_button:hover,
+.home-registration .wpbc_wizard_step_button:focus {
+	background: #2a3d55 !important;
+	color: #fff !important;
+	border-color: transparent !important;
 }
 
 .home-registration .wpbc_bfb_divider {
@@ -204,9 +280,9 @@
 }
 
 .home-registration .form_bk_messages {
-	@apply mt-4 text-sm;
+	@apply mt-3 text-sm;
 }
 
 .home-registration .ajax_respond_insert {
-	@apply mt-4;
+	@apply mt-3;
 }

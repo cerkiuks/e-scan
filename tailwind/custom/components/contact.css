@@ -1,0 +1,112 @@
+/**
+ * Homepage contact / location section.
+ */
+
+.contact {
+	--contact-primary: #344966;
+	--contact-secondary: #b4cbeb;
+	--contact-muted: rgb(255 255 255 / 0.45);
+	--contact-icon-bg: rgb(255 255 255 / 0.08);
+
+	@apply w-full;
+}
+
+.contact__layout {
+	@apply grid min-h-[640px] grid-cols-2 lg:grid-cols-1 lg:min-h-0;
+}
+
+.contact__map {
+	@apply relative min-h-[420px] lg:min-h-[320px];
+}
+
+.contact__map-iframe {
+	@apply absolute inset-0 h-full w-full border-0;
+}
+
+.contact__panel {
+	background-color: var(--contact-primary);
+	@apply flex items-stretch;
+}
+
+.contact__panel-inner {
+	@apply flex w-full flex-col justify-center px-14 py-20 lg:px-6 lg:py-14;
+}
+
+.contact__eyebrow {
+	@apply mb-6 text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--contact-secondary);
+}
+
+.contact__title {
+	@apply mb-12 text-[50px] leading-[1.04] font-bold text-white lg:mb-10 lg:text-[38px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.contact__title-highlight {
+	@apply font-normal italic;
+	color: rgb(255 255 255 / 0.72);
+}
+
+.contact__list {
+	@apply mb-12 space-y-8 lg:mb-10 lg:space-y-7;
+}
+
+.contact__item {
+	@apply flex items-start gap-4;
+}
+
+.contact__icon {
+	@apply mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full;
+	background-color: var(--contact-icon-bg);
+	color: var(--contact-secondary);
+}
+
+.contact__item-body {
+	@apply min-w-0;
+}
+
+.contact__item-label {
+	@apply mb-1.5 text-[10px] font-semibold tracking-[0.28em] uppercase;
+	color: var(--contact-muted);
+}
+
+.contact__item-value,
+.contact__item-link {
+	@apply text-[15px] leading-snug;
+	color: #fff;
+}
+
+.contact__item-value--muted {
+	color: var(--contact-muted);
+}
+
+.contact__item-link {
+	@apply inline-block transition-colors;
+}
+
+.contact__item-link:hover {
+	color: var(--contact-secondary);
+}
+
+.contact__cta {
+	@apply inline-flex w-full items-center justify-center gap-2.5 px-7 py-4 text-sm font-bold tracking-wide transition-colors;
+	background-color: #fff;
+	color: var(--contact-primary);
+}
+
+.contact__cta:hover {
+	background-color: var(--contact-secondary);
+}
+
+.contact__cta-icon {
+	@apply shrink-0;
+}
+
+.contact__secondary-link {
+	@apply mt-5 block text-center text-sm transition-colors;
+	color: var(--contact-muted);
+}
+
+.contact__secondary-link:hover {
+	color: #fff;
+}

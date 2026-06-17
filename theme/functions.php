@@ -261,6 +261,12 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
+ * Reusable section helpers and data loaders.
+ */
+require get_template_directory() . '/inc/section-helpers.php';
+require get_template_directory() . '/inc/section-data.php';
+
+/**
  * Registers local ACF field groups used by theme templates.
  */
 require get_template_directory() . '/inc/acf-fields.php';

@@ -751,7 +751,7 @@ function optimalu_e_scan_register_acf_fields() {
 	acf_add_local_field_group(
 		array(
 			'key'                   => 'group_optimalu_front_page_registration',
-			'title'                 => 'Front Page Registration',
+			'title'                 => 'Registration Section',
 			'fields'                => array(
 				array(
 					'key'           => 'field_optimalu_fp_registration_eyebrow',
@@ -866,6 +866,248 @@ function optimalu_e_scan_register_acf_fields() {
 						'value'    => 'front_page',
 					),
 				),
+				array(
+					array(
+						'param'    => 'page_template',
+						'operator' => '==',
+						'value'    => 'page-templates/page-template-booking.php',
+					),
+				),
+			),
+			'position'              => 'normal',
+			'style'                 => 'default',
+			'label_placement'       => 'top',
+			'instruction_placement' => 'label',
+			'active'                => true,
+		)
+	);
+
+	acf_add_local_field_group(
+		array(
+			'key'                   => 'group_optimalu_front_page_specialists',
+			'title'                 => 'Specialists Section',
+			'fields'                => array(
+				array(
+					'key'           => 'field_optimalu_fp_specialists_eyebrow',
+					'label'         => 'Specialists eyebrow',
+					'name'          => 'specialists_eyebrow',
+					'type'          => 'text',
+					'default_value' => 'Komanda',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_specialists_title',
+					'label'         => 'Specialists title',
+					'name'          => 'specialists_title',
+					'type'          => 'text',
+					'default_value' => 'Mūsų',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_specialists_title_highlight',
+					'label'         => 'Specialists title highlight',
+					'name'          => 'specialists_title_highlight',
+					'type'          => 'text',
+					'default_value' => 'specialistai',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_specialists_description',
+					'label'         => 'Specialists description',
+					'name'          => 'specialists_description',
+					'type'          => 'textarea',
+					'rows'          => 3,
+					'default_value' => 'Sertifikuoti radiologai su tarptautine patirtimi ir nuolatine kvalifikacijos kėlimu.',
+				),
+				array(
+					'key'          => 'field_optimalu_fp_specialists_items',
+					'label'        => 'Specialists',
+					'name'         => 'specialists_items',
+					'type'         => 'group',
+					'instructions' => 'Up to 4 specialist cards (leave unused slots empty).',
+					'layout'       => 'block',
+					'sub_fields'   => optimalu_e_scan_get_specialists_item_sub_fields(),
+				),
+				array(
+					'key'           => 'field_optimalu_fp_specialists_footer_link_text',
+					'label'         => 'Specialists footer link text',
+					'name'          => 'specialists_footer_link_text',
+					'type'          => 'text',
+					'default_value' => 'Susipažinkite su komanda plačiau',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_specialists_footer_link_url',
+					'label'         => 'Specialists footer link URL',
+					'name'          => 'specialists_footer_link_url',
+					'type'          => 'url',
+					'default_value' => '/komanda/',
+				),
+			),
+			'location'              => array(
+				array(
+					array(
+						'param'    => 'page_type',
+						'operator' => '==',
+						'value'    => 'front_page',
+					),
+				),
+				array(
+					array(
+						'param'    => 'page_template',
+						'operator' => '==',
+						'value'    => 'page-templates/page-template-team.php',
+					),
+				),
+			),
+			'position'              => 'normal',
+			'style'                 => 'default',
+			'label_placement'       => 'top',
+			'instruction_placement' => 'label',
+			'active'                => true,
+		)
+	);
+
+	acf_add_local_field_group(
+		array(
+			'key'                   => 'group_optimalu_front_page_contact',
+			'title'                 => 'Contact Section',
+			'fields'                => array(
+				array(
+					'key'           => 'field_optimalu_fp_contact_eyebrow',
+					'label'         => 'Contact eyebrow',
+					'name'          => 'contact_eyebrow',
+					'type'          => 'text',
+					'default_value' => 'Kontaktai ir lokacija',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_title',
+					'label'         => 'Contact title',
+					'name'          => 'contact_title',
+					'type'          => 'text',
+					'default_value' => 'Susisiekite',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_title_highlight',
+					'label'         => 'Contact title highlight',
+					'name'          => 'contact_title_highlight',
+					'type'          => 'text',
+					'default_value' => 'su mumis',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_address_label',
+					'label'         => 'Address label',
+					'name'          => 'contact_address_label',
+					'type'          => 'text',
+					'default_value' => 'Adresas',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_address',
+					'label'         => 'Address',
+					'name'          => 'contact_address',
+					'type'          => 'textarea',
+					'instructions'  => 'One line per row (e.g. street, then postal code).',
+					'rows'          => 3,
+					'default_value' => "Gedimino pr. 28, Vilnius\nLT-01104",
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_phone_label',
+					'label'         => 'Phone label',
+					'name'          => 'contact_phone_label',
+					'type'          => 'text',
+					'default_value' => 'Telefonas',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_phone',
+					'label'         => 'Phone',
+					'name'          => 'contact_phone',
+					'type'          => 'text',
+					'default_value' => '+370 5 222 33 44',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_email_label',
+					'label'         => 'Email label',
+					'name'          => 'contact_email_label',
+					'type'          => 'text',
+					'default_value' => 'El. paštas',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_email',
+					'label'         => 'Email',
+					'name'          => 'contact_email',
+					'type'          => 'email',
+					'default_value' => 'info@e-scan.lt',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_hours_label',
+					'label'         => 'Working hours label',
+					'name'          => 'contact_hours_label',
+					'type'          => 'text',
+					'default_value' => 'Darbo laikas',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_hours_main',
+					'label'         => 'Working hours main',
+					'name'          => 'contact_hours_main',
+					'type'          => 'text',
+					'default_value' => 'I–V: 8:00–20:00',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_hours_secondary',
+					'label'         => 'Working hours secondary',
+					'name'          => 'contact_hours_secondary',
+					'type'          => 'text',
+					'default_value' => 'VI: 9:00–15:00',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_cta_text',
+					'label'         => 'CTA button text',
+					'name'          => 'contact_cta_text',
+					'type'          => 'text',
+					'default_value' => 'Registruotis tyrimui',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_cta_url',
+					'label'         => 'CTA button URL',
+					'name'          => 'contact_cta_url',
+					'type'          => 'url',
+					'default_value' => '#booking',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_secondary_link_text',
+					'label'         => 'Secondary link text',
+					'name'          => 'contact_secondary_link_text',
+					'type'          => 'text',
+					'default_value' => 'Daugiau kontaktinės informacijos',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_secondary_link_url',
+					'label'         => 'Secondary link URL',
+					'name'          => 'contact_secondary_link_url',
+					'type'          => 'url',
+					'default_value' => '/kontaktai/',
+				),
+				array(
+					'key'           => 'field_optimalu_fp_contact_map_embed',
+					'label'         => 'Google Maps embed',
+					'name'          => 'contact_map_embed',
+					'type'          => 'textarea',
+					'instructions'  => 'Paste the Google Maps embed iframe HTML or embed URL (maps/embed).',
+					'rows'          => 4,
+					'default_value' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2301.3863487!2d25.2796524!3d54.6871551!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd9407b0fb6e8b%3A0x7e8fd6e6a6aaf6f8!2sGedimino%20pr.%2028%2C%20Vilnius%2011103%20Lietuva!5e0!3m2!1slt!2slt!4v1718450000000!5m2!1slt!2slt',
+				),
+			),
+			'location'              => array(
+				array(
+					array(
+						'param'    => 'page_type',
+						'operator' => '==',
+						'value'    => 'front_page',
+					),
+				),
+				array(
+					array(
+						'param'    => 'page_template',
+						'operator' => '==',
+						'value'    => 'page-templates/page-template-contact.php',
+					),
+				),
 			),
 			'position'              => 'normal',
 			'style'                 => 'default',
@@ -875,4 +1117,107 @@ function optimalu_e_scan_register_acf_fields() {
 		)
 	);
 }
+
+/**
+ * ACF sub-fields for a single specialist slot in the front-page group.
+ *
+ * @param int    $index Specialist slot number (1–4).
+ * @param array  $defaults Default values for the slot.
+ * @return array<int, array<string, mixed>>
+ */
+function optimalu_e_scan_get_specialist_slot_sub_fields( $index, $defaults = array() ) {
+	$defaults = wp_parse_args(
+		$defaults,
+		array(
+			'name'        => '',
+			'position'    => '',
+			'description' => '',
+			'link_text'   => '',
+			'link_url'    => '',
+		)
+	);
+
+	return array(
+		array(
+			'key'           => "field_optimalu_fp_specialist_{$index}_photo",
+			'label'         => "Specialist {$index} photo",
+			'name'          => "specialist_{$index}_photo",
+			'type'          => 'image',
+			'return_format' => 'array',
+			'preview_size'  => 'medium',
+			'library'       => 'all',
+		),
+		array(
+			'key'           => "field_optimalu_fp_specialist_{$index}_name",
+			'label'         => "Specialist {$index} name",
+			'name'          => "specialist_{$index}_name",
+			'type'          => 'text',
+			'default_value' => $defaults['name'],
+		),
+		array(
+			'key'           => "field_optimalu_fp_specialist_{$index}_position",
+			'label'         => "Specialist {$index} position",
+			'name'          => "specialist_{$index}_position",
+			'type'          => 'text',
+			'default_value' => $defaults['position'],
+		),
+		array(
+			'key'           => "field_optimalu_fp_specialist_{$index}_description",
+			'label'         => "Specialist {$index} description",
+			'name'          => "specialist_{$index}_description",
+			'type'          => 'textarea',
+			'rows'          => 2,
+			'default_value' => $defaults['description'],
+		),
+		array(
+			'key'           => "field_optimalu_fp_specialist_{$index}_link_text",
+			'label'         => "Specialist {$index} link text",
+			'name'          => "specialist_{$index}_link_text",
+			'type'          => 'text',
+			'default_value' => $defaults['link_text'],
+		),
+		array(
+			'key'           => "field_optimalu_fp_specialist_{$index}_link_url",
+			'label'         => "Specialist {$index} link URL",
+			'name'          => "specialist_{$index}_link_url",
+			'type'          => 'url',
+			'default_value' => $defaults['link_url'],
+		),
+	);
+}
+
+/**
+ * Build all specialist slot sub-fields for the specialists group.
+ *
+ * @return array<int, array<string, mixed>>
+ */
+function optimalu_e_scan_get_specialists_item_sub_fields() {
+	$slots = array(
+		1 => array(
+			'name'        => 'Dr. Rasa Petrauskienė',
+			'position'    => 'Radiologė',
+			'description' => 'KT diagnostika',
+		),
+		2 => array(
+			'name'        => 'Dr. Tomas Kazlauskas',
+			'position'    => 'Radiologas',
+			'description' => 'Diagnostinė radiologija',
+		),
+		3 => array(
+			'name'        => 'Dr. Aistė Rimkutė',
+			'position'    => 'Radiologė',
+			'description' => 'KT diagnostika',
+		),
+		4 => array(),
+	);
+
+	$sub_fields = array();
+
+	foreach ( $slots as $index => $defaults ) {
+		$sub_fields = array_merge( $sub_fields, optimalu_e_scan_get_specialist_slot_sub_fields( $index, $defaults ) );
+	}
+
+	return $sub_fields;
+}
+
 add_action( 'acf/init', 'optimalu_e_scan_register_acf_fields' );

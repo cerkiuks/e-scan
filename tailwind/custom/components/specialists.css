@@ -1,0 +1,133 @@
+/**
+ * Homepage specialists section.
+ */
+
+.specialists {
+	--specialists-primary: #344966;
+	--specialists-muted: #777779;
+	--specialists-secondary: #b4cbeb;
+	--specialists-beige: #f5f1eb;
+	--specialists-index: #ddd5c8;
+
+	background-color: var(--specialists-beige);
+	@apply py-28 lg:py-20;
+}
+
+.specialists__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6;
+}
+
+.specialists__intro {
+	@apply mb-16 grid grid-cols-[minmax(0,1fr)_minmax(0,22rem)] items-end gap-x-16 gap-y-8 lg:mb-12 lg:grid-cols-1 lg:items-start;
+}
+
+.specialists__intro-left {
+	@apply min-w-0;
+}
+
+.specialists__intro-right {
+	@apply min-w-0 lg:max-w-none;
+}
+
+.specialists__eyebrow {
+	@apply text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--specialists-muted);
+}
+
+.specialists__title {
+	@apply mt-4 text-[50px] leading-[1.04] font-bold lg:text-[38px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--specialists-primary);
+}
+
+.specialists__description {
+	@apply text-[15px] leading-[1.7] lg:text-left;
+	color: var(--specialists-muted);
+}
+
+.specialists__grid {
+	@apply grid grid-cols-3 gap-7 lg:grid-cols-1 lg:gap-12;
+}
+
+.specialists__card {
+	@apply flex min-w-0 flex-col;
+}
+
+.specialists__card-media {
+	@apply mb-5 aspect-[5/6] overflow-hidden;
+	background-color: rgb(52 73 102 / 0.06);
+}
+
+.specialists__card-image {
+	@apply h-full w-full object-cover object-top;
+}
+
+.specialists__card-placeholder {
+	@apply h-full w-full;
+	background: linear-gradient(
+		180deg,
+		rgb(180 203 235 / 0.22) 0%,
+		rgb(52 73 102 / 0.05) 100%
+	);
+}
+
+.specialists__card-footer {
+	@apply flex items-start justify-between gap-4;
+}
+
+.specialists__card-copy {
+	@apply min-w-0 flex-1;
+}
+
+.specialists__card-name {
+	@apply mb-1 text-[17px] leading-snug font-bold;
+	color: var(--specialists-primary);
+}
+
+.specialists__card-position {
+	@apply mb-2 text-sm leading-snug font-normal;
+	color: var(--specialists-primary);
+}
+
+.specialists__card-desc {
+	@apply text-[10px] leading-relaxed font-semibold tracking-[0.22em] uppercase;
+	color: var(--specialists-secondary);
+}
+
+.specialists__card-index {
+	@apply shrink-0 pt-1 text-[64px] leading-none font-bold lg:text-[56px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--specialists-index);
+}
+
+.specialists__card-link {
+	@apply mt-4 inline-flex items-center gap-2 border-b-2 pb-0.5 text-sm font-semibold transition-colors;
+	color: var(--specialists-primary);
+	border-color: var(--specialists-primary);
+}
+
+.specialists__card-link:hover {
+	border-color: var(--specialists-secondary);
+}
+
+.specialists__card-link-icon {
+	@apply shrink-0;
+}
+
+.specialists__footer {
+	@apply mt-16 text-center lg:mt-12;
+}
+
+.specialists__footer-link {
+	@apply inline-flex items-center gap-2 border-b-2 pb-0.5 text-sm font-semibold transition-colors;
+	color: var(--specialists-primary);
+	border-color: var(--specialists-primary);
+}
+
+.specialists__footer-link:hover {
+	border-color: var(--specialists-secondary);
+}
+
+.specialists__footer-link-icon {
+	@apply shrink-0;
+}

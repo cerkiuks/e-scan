@@ -72,6 +72,8 @@
 @import "./tailwind/custom/components/hero.css";
 @import "./tailwind/custom/components/philosophy.css";
 @import "./tailwind/custom/components/registration.css";
+@import "./tailwind/custom/components/specialists.css";
+@import "./tailwind/custom/components/contact.css";
 
 /**
  * Add Tailwind Typography.
