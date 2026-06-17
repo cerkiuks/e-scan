@@ -5,8 +5,7 @@
  * @package optimalu-e-scan
  */
 
-$post_id = optimalu_e_scan_resolve_section_post_id( isset( $args ) && is_array( $args ) ? $args : array() );
-$data    = optimalu_e_scan_get_contact_section_data( $post_id );
+$data = optimalu_e_scan_get_contact_section_data();
 ?>
 
 <section id="contact" class="contact" aria-label="<?php esc_attr_e( 'Contact and location', 'optimalu-e-scan' ); ?>">

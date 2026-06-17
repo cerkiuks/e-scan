@@ -14,11 +14,11 @@
 }
 
 .specialists__inner {
-	@apply mx-auto max-w-[1280px] px-14 lg:px-6;
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6 md:px-5;
 }
 
 .specialists__intro {
-	@apply mb-16 grid grid-cols-[minmax(0,1fr)_minmax(0,22rem)] items-end gap-x-16 gap-y-8 lg:mb-12 lg:grid-cols-1 lg:items-start;
+	@apply mb-16 grid grid-cols-[minmax(0,1fr)_minmax(0,22rem)] items-end gap-x-16 gap-y-8 lg:mb-12 lg:grid-cols-1 lg:items-start md:mb-6 md:gap-y-3;
 }
 
 .specialists__intro-left {
@@ -35,7 +35,7 @@
 }
 
 .specialists__title {
-	@apply mt-4 text-[50px] leading-[1.04] font-bold lg:text-[38px];
+	@apply mt-4 text-[50px] leading-[1.04] font-bold lg:text-[38px] md:text-[32px] md:leading-[1.08];
 	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 	color: var(--specialists-primary);
 }
@@ -45,16 +45,88 @@
 	color: var(--specialists-muted);
 }
 
-.specialists__grid {
-	@apply grid grid-cols-3 gap-7 lg:grid-cols-1 lg:gap-12;
+.specialists__carousel {
+	--specialists-nav-outset: calc(2.75rem + 0.75rem);
+
+	@apply relative md:mt-1 md:grid md:grid-cols-[1fr_auto_auto] md:grid-rows-[auto_auto] md:items-center md:gap-x-2 md:gap-y-1;
+}
+
+.specialists__viewport {
+	@apply min-w-0 w-full overflow-hidden md:col-span-3 md:col-start-1 md:row-start-2 md:-mx-5;
+}
+
+.specialists__track {
+	@apply flex snap-x snap-mandatory gap-7 overflow-x-auto overscroll-x-contain md:gap-3 md:px-5;
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	touch-action: pan-x;
+	overscroll-behavior-x: contain;
+}
+
+@media (max-width: 767px) {
+	.specialists__track {
+		scroll-padding-inline: 1.25rem;
+	}
+}
+
+.specialists__track::-webkit-scrollbar {
+	display: none;
 }
 
 .specialists__card {
-	@apply flex min-w-0 flex-col;
+	@apply flex shrink-0 grow-0 snap-start flex-col;
+	flex: 0 0 calc((100% - (2 * 1.75rem)) / 3);
+	min-width: 0;
+}
+
+@media (max-width: 767px) {
+	.specialists__card {
+		flex: 0 0 84vw;
+		min-width: 84vw;
+		max-width: 84vw;
+		overflow: hidden;
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
+	}
+}
+
+@media (min-width: 768px) {
+	.specialists__card {
+		flex: 0 0 calc((100% - (2 * 1.75rem)) / 3);
+	}
+}
+
+.specialists__nav {
+	@apply absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border transition-colors disabled:pointer-events-none disabled:opacity-35 md:static md:z-auto md:translate-y-0;
+	color: var(--specialists-primary);
+	border-color: rgb(52 73 102 / 0.18);
+	background-color: rgb(255 255 255 / 0.72);
+}
+
+.specialists__nav--prev {
+	left: calc(-1 * var(--specialists-nav-outset));
+
+	@apply md:col-start-2 md:row-start-1 md:justify-self-end md:left-auto;
+}
+
+.specialists__nav--next {
+	right: calc(-1 * var(--specialists-nav-outset));
+
+	@apply md:col-start-3 md:row-start-1 md:justify-self-end md:right-auto;
+}
+
+.specialists__nav:not(:disabled):hover {
+	border-color: var(--specialists-secondary);
+	color: var(--specialists-primary);
+}
+
+.specialists__nav-icon {
+	@apply shrink-0;
 }
 
 .specialists__card-media {
-	@apply mb-5 aspect-[5/6] overflow-hidden;
+	@apply mb-5 aspect-[5/6] overflow-hidden md:mb-3 md:aspect-auto md:h-[220px] md:max-h-[220px];
 	background-color: rgb(52 73 102 / 0.06);
 }
 
@@ -72,30 +144,30 @@
 }
 
 .specialists__card-footer {
-	@apply flex items-start justify-between gap-4;
+	@apply flex items-start justify-between gap-4 md:flex-col md:items-stretch md:gap-2;
 }
 
 .specialists__card-copy {
-	@apply min-w-0 flex-1;
+	@apply min-w-0 flex-1 md:w-full md:flex-none;
 }
 
 .specialists__card-name {
-	@apply mb-1 text-[17px] leading-snug font-bold;
+	@apply mb-1 text-[17px] leading-snug font-bold md:mb-0.5 md:text-pretty;
 	color: var(--specialists-primary);
 }
 
 .specialists__card-position {
-	@apply mb-2 text-sm leading-snug font-normal;
+	@apply mb-2 text-sm leading-snug font-normal md:mb-1;
 	color: var(--specialists-primary);
 }
 
 .specialists__card-desc {
-	@apply text-[10px] leading-relaxed font-semibold tracking-[0.22em] uppercase;
+	@apply text-[10px] leading-relaxed font-semibold tracking-[0.22em] uppercase md:leading-normal;
 	color: var(--specialists-secondary);
 }
 
 .specialists__card-index {
-	@apply shrink-0 pt-1 text-[64px] leading-none font-bold lg:text-[56px];
+	@apply shrink-0 pt-1 text-[64px] leading-none font-bold md:hidden;
 	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 	color: var(--specialists-index);
 }
@@ -115,7 +187,7 @@
 }
 
 .specialists__footer {
-	@apply mt-16 text-center lg:mt-12;
+	@apply mt-16 text-center lg:mt-12 md:mt-6;
 }
 
 .specialists__footer-link {

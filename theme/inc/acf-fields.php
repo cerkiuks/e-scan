@@ -866,13 +866,6 @@ function optimalu_e_scan_register_acf_fields() {
 						'value'    => 'front_page',
 					),
 				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-templates/page-template-booking.php',
-					),
-				),
 			),
 			'position'              => 'normal',
 			'style'                 => 'default',
@@ -921,7 +914,7 @@ function optimalu_e_scan_register_acf_fields() {
 					'label'        => 'Specialists',
 					'name'         => 'specialists_items',
 					'type'         => 'group',
-					'instructions' => 'Up to 4 specialist cards (leave unused slots empty).',
+					'instructions' => 'Add up to ' . OPTIMALU_E_SCAN_SPECIALISTS_MAX_SLOTS . ' specialists (leave unused slots empty). Filled slots appear in the homepage carousel.',
 					'layout'       => 'block',
 					'sub_fields'   => optimalu_e_scan_get_specialists_item_sub_fields(),
 				),
@@ -946,13 +939,6 @@ function optimalu_e_scan_register_acf_fields() {
 						'param'    => 'page_type',
 						'operator' => '==',
 						'value'    => 'front_page',
-					),
-				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-templates/page-template-team.php',
 					),
 				),
 			),
@@ -1101,13 +1087,6 @@ function optimalu_e_scan_register_acf_fields() {
 						'value'    => 'front_page',
 					),
 				),
-				array(
-					array(
-						'param'    => 'page_template',
-						'operator' => '==',
-						'value'    => 'page-templates/page-template-contact.php',
-					),
-				),
 			),
 			'position'              => 'normal',
 			'style'                 => 'default',
@@ -1121,7 +1100,7 @@ function optimalu_e_scan_register_acf_fields() {
 /**
  * ACF sub-fields for a single specialist slot in the front-page group.
  *
- * @param int    $index Specialist slot number (1–4).
+ * @param int    $index Specialist slot number (1–12).
  * @param array  $defaults Default values for the slot.
  * @return array<int, array<string, mixed>>
  */
@@ -1208,13 +1187,13 @@ function optimalu_e_scan_get_specialists_item_sub_fields() {
 			'position'    => 'Radiologė',
 			'description' => 'KT diagnostika',
 		),
-		4 => array(),
 	);
 
 	$sub_fields = array();
 
-	foreach ( $slots as $index => $defaults ) {
-		$sub_fields = array_merge( $sub_fields, optimalu_e_scan_get_specialist_slot_sub_fields( $index, $defaults ) );
+	for ( $index = 1; $index <= OPTIMALU_E_SCAN_SPECIALISTS_MAX_SLOTS; $index++ ) {
+		$defaults     = isset( $slots[ $index ] ) ? $slots[ $index ] : array();
+		$sub_fields   = array_merge( $sub_fields, optimalu_e_scan_get_specialist_slot_sub_fields( $index, $defaults ) );
 	}
 
 	return $sub_fields;

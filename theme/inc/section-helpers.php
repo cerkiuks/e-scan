@@ -5,6 +5,10 @@
  * @package optimalu-e-scan
  */
 
+if ( ! defined( 'OPTIMALU_E_SCAN_SPECIALISTS_MAX_SLOTS' ) ) {
+	define( 'OPTIMALU_E_SCAN_SPECIALISTS_MAX_SLOTS', 12 );
+}
+
 if ( ! function_exists( 'optimalu_e_scan_get_section_field' ) ) {
 	/**
 	 * Read an ACF field for a specific page/post.

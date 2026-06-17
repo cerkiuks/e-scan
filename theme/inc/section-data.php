@@ -108,7 +108,7 @@ if ( ! function_exists( 'optimalu_e_scan_get_specialists_section_data' ) ) {
 		$specialists = array();
 
 		if ( is_array( $items_raw ) && ! empty( $items_raw ) ) {
-			for ( $i = 1; $i <= 4; $i++ ) {
+			for ( $i = 1; $i <= OPTIMALU_E_SCAN_SPECIALISTS_MAX_SLOTS; $i++ ) {
 				$photo_raw = isset( $items_raw[ "specialist_{$i}_photo" ] ) ? $items_raw[ "specialist_{$i}_photo" ] : null;
 
 				if ( empty( $photo_raw ) && $post_id ) {
