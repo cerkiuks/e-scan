@@ -48,13 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		const track = carousel.querySelector('.specialists__track');
 		const prevButton = carousel.querySelector('.specialists__nav--prev');
 		const nextButton = carousel.querySelector('.specialists__nav--next');
+		const counter = carousel.querySelector('[data-specialists-counter]');
+		const counterCurrent = counter?.querySelector('.specialists__counter-current');
+		const cards = track ? Array.from(track.querySelectorAll('.specialists__card')) : [];
 
-		if (!track || !prevButton || !nextButton) {
+		if (!track || !prevButton || !nextButton || !counterCurrent || cards.length === 0) {
 			return;
 		}
 
 		const getScrollStep = () => {
-			const card = track.querySelector('.specialists__card');
+			const card = cards[0];
 
 			if (!card) {
 				return 0;
@@ -65,12 +68,37 @@ document.addEventListener('DOMContentLoaded', () => {
 			return card.getBoundingClientRect().width + gap;
 		};
 
-		const updateNavState = () => {
+		const isDesktopCarousel = () => window.matchMedia('(min-width: 768px)').matches;
+
+		const getActiveIndex = () => {
+			const trackRect = track.getBoundingClientRect();
+			const trackCenter = trackRect.left + trackRect.width / 2;
+
+			let closestIndex = 0;
+			let closestDistance = Number.POSITIVE_INFINITY;
+
+			cards.forEach((card, index) => {
+				const cardRect = card.getBoundingClientRect();
+				const cardCenter = cardRect.left + cardRect.width / 2;
+				const distance = Math.abs(cardCenter - trackCenter);
+
+				if (distance < closestDistance) {
+					closestDistance = distance;
+					closestIndex = index;
+				}
+			});
+
+			return closestIndex;
+		};
+
+		const updateCarouselState = () => {
+			const activeIndex = getActiveIndex();
 			const maxScroll = track.scrollWidth - track.clientWidth;
 			const atStart = track.scrollLeft <= 1;
 			const atEnd = track.scrollLeft >= maxScroll - 1;
 			const isScrollable = maxScroll > 1;
 
+			counterCurrent.textContent = String(activeIndex + 1).padStart(2, '0');
 			prevButton.disabled = !isScrollable || atStart;
 			nextButton.disabled = !isScrollable || atEnd;
 			prevButton.setAttribute('aria-disabled', prevButton.disabled ? 'true' : 'false');
@@ -91,7 +119,20 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		});
 
-		track.addEventListener('scroll', updateNavState, { passive: true });
+		track.addEventListener('scroll', updateCarouselState, { passive: true });
+		track.addEventListener(
+			'wheel',
+			(event) => {
+				if (!isDesktopCarousel()) {
+					return;
+				}
+
+				if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+					event.preventDefault();
+				}
+			},
+			{ passive: false }
+		);
 		track.addEventListener('keydown', (event) => {
 			if (event.key === 'ArrowLeft') {
 				event.preventDefault();
@@ -110,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 
-		window.addEventListener('resize', updateNavState);
-		updateNavState();
+		window.addEventListener('resize', updateCarouselState);
+		updateCarouselState();
 	});
 });

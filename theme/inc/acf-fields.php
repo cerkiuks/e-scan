@@ -1200,3 +1200,4 @@ function optimalu_e_scan_get_specialists_item_sub_fields() {
 }
 
 add_action( 'acf/init', 'optimalu_e_scan_register_acf_fields' );
+add_action( 'acf/init', 'optimalu_e_scan_register_about_page_acf_fields' );

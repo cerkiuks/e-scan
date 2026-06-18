@@ -5,7 +5,13 @@
  * @package optimalu-e-scan
  */
 
-$data = optimalu_e_scan_get_specialists_section_data();
+$args = isset( $args ) && is_array( $args ) ? $args : array();
+
+if ( function_exists( 'optimalu_e_scan_is_about_page_template' ) && optimalu_e_scan_is_about_page_template() ) {
+	$data = optimalu_e_scan_get_about_page_specialists_data();
+} else {
+	$data = optimalu_e_scan_get_specialists_section_data( optimalu_e_scan_resolve_section_post_id( $args ) );
+}
 ?>
 
 <section id="team" class="specialists" aria-label="<?php esc_attr_e( 'Specialists', 'optimalu-e-scan' ); ?>">
@@ -29,21 +35,16 @@ $data = optimalu_e_scan_get_specialists_section_data();
 		</header>
 
 		<?php if ( ! empty( $data['specialists'] ) ) : ?>
-			<?php $specialists_track_id = wp_unique_id( 'specialists-track-' ); ?>
-			<div class="specialists__carousel" data-specialists-carousel>
-				<button
-					type="button"
-					class="specialists__nav specialists__nav--prev"
-					aria-label="<?php esc_attr_e( 'Previous specialists', 'optimalu-e-scan' ); ?>"
-					aria-controls="<?php echo esc_attr( $specialists_track_id ); ?>"
-					aria-disabled="true"
-					disabled
-				>
-					<svg class="specialists__nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="m15 18-6-6 6-6" />
-					</svg>
-				</button>
-
+			<?php
+			$specialists_track_id   = wp_unique_id( 'specialists-track-' );
+			$specialists_total      = count( $data['specialists'] );
+			$specialists_total_text = sprintf( '%02d', $specialists_total );
+			?>
+			<div
+				class="specialists__carousel"
+				data-specialists-carousel
+				data-specialists-total="<?php echo esc_attr( (string) $specialists_total ); ?>"
+			>
 				<div class="specialists__viewport">
 					<div
 						id="<?php echo esc_attr( $specialists_track_id ); ?>"
@@ -66,6 +67,7 @@ $data = optimalu_e_scan_get_specialists_section_data();
 											alt="<?php echo esc_attr( $specialist['photo_alt'] ); ?>"
 											loading="lazy"
 											decoding="async"
+											draggable="false"
 										>
 									<?php else : ?>
 										<div class="specialists__card-placeholder" aria-hidden="true"></div>
@@ -104,17 +106,39 @@ $data = optimalu_e_scan_get_specialists_section_data();
 					</div>
 				</div>
 
-				<button
-					type="button"
-					class="specialists__nav specialists__nav--next"
-					aria-label="<?php esc_attr_e( 'Next specialists', 'optimalu-e-scan' ); ?>"
-					aria-controls="<?php echo esc_attr( $specialists_track_id ); ?>"
-					aria-disabled="false"
-				>
-					<svg class="specialists__nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="m9 18 6-6-6-6" />
-					</svg>
-				</button>
+				<div class="specialists__controls">
+					<button
+						type="button"
+						class="specialists__nav specialists__nav--prev"
+						aria-label="<?php esc_attr_e( 'Previous specialist', 'optimalu-e-scan' ); ?>"
+						aria-controls="<?php echo esc_attr( $specialists_track_id ); ?>"
+						aria-disabled="true"
+						disabled
+					>
+						<svg class="specialists__nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="m15 18-6-6 6-6" />
+						</svg>
+					</button>
+
+					<p class="specialists__counter" data-specialists-counter aria-live="polite">
+						<span class="specialists__counter-current">01</span>
+						<span class="specialists__counter-separator" aria-hidden="true"> / </span>
+						<span class="specialists__counter-total"><?php echo esc_html( $specialists_total_text ); ?></span>
+					</p>
+
+					<button
+						type="button"
+						class="specialists__nav specialists__nav--next"
+						aria-label="<?php esc_attr_e( 'Next specialist', 'optimalu-e-scan' ); ?>"
+						aria-controls="<?php echo esc_attr( $specialists_track_id ); ?>"
+						aria-disabled="<?php echo $specialists_total > 1 ? 'false' : 'true'; ?>"
+						<?php disabled( $specialists_total <= 1 ); ?>
+					>
+						<svg class="specialists__nav-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="m9 18 6-6-6-6" />
+						</svg>
+					</button>
+				</div>
 			</div>
 		<?php endif; ?>
 

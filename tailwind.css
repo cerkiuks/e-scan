@@ -66,6 +66,7 @@
  */
 @import "./tailwind/custom/components/components.css";
 @import "./tailwind/custom/components/about.css";
+@import "./tailwind/custom/components/about-page.css";
 @import "./tailwind/custom/components/ct.css";
 @import "./tailwind/custom/components/footer.css";
 @import "./tailwind/custom/components/header.css";

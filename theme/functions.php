@@ -265,11 +265,13 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/section-helpers.php';
 require get_template_directory() . '/inc/section-data.php';
+require get_template_directory() . '/inc/about-page-data.php';
 
 /**
  * Registers local ACF field groups used by theme templates.
  */
 require get_template_directory() . '/inc/acf-fields.php';
+require get_template_directory() . '/inc/acf-fields-about-page.php';
 
 /**
  * Footer Customizer settings.
