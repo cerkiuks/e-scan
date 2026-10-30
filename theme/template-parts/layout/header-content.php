@@ -7,11 +7,17 @@
  * @package optimalu-e-scan
  */
 
-$is_home_header = is_front_page();
-$header_classes = array( 'site-header' );
+$is_home_header    = is_front_page();
+$is_overlay_header = $is_home_header
+	|| ( function_exists( 'optimalu_e_scan_is_ct_service_template' ) && optimalu_e_scan_is_ct_service_template() )
+	|| ( function_exists( 'optimalu_e_scan_is_contact_page_template' ) && optimalu_e_scan_is_contact_page_template() )
+	|| ( function_exists( 'optimalu_e_scan_is_about_page_template' ) && optimalu_e_scan_is_about_page_template() );
+$header_classes    = array( 'site-header' );
 
-if ( $is_home_header ) {
-	$header_classes[] = 'site-header--home';
+if ( $is_overlay_header ) {
+	if ( $is_home_header ) {
+		$header_classes[] = 'site-header--home';
+	}
 	$header_classes[] = 'site-header--transparent';
 } else {
 	$header_classes[] = 'site-header--solid';
@@ -33,7 +39,7 @@ if ( has_custom_logo() ) {
 $cta_url = home_url( '/kt-tyrimai/' );
 ?>
 
-<header id="masthead" class="<?php echo esc_attr( implode( ' ', $header_classes ) ); ?>"<?php echo $is_home_header ? ' data-home-header="true"' : ''; ?>>
+<header id="masthead" class="<?php echo esc_attr( implode( ' ', $header_classes ) ); ?>"<?php echo $is_overlay_header ? ' data-home-header="true"' : ''; ?>>
 	<div class="site-header__inner">
 		<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 			<span class="site-header__logo-images">
@@ -66,7 +72,8 @@ $cta_url = home_url( '/kt-tyrimai/' );
 					'menu_id'        => 'primary-menu',
 					'menu_class'     => 'site-header__menu',
 					'fallback_cb'    => false,
-					'depth'          => 1,
+					'depth'          => 2,
+					'walker'         => new Optimalu_E_Scan_Desktop_Nav_Walker(),
 				)
 			);
 			?>
@@ -109,15 +116,6 @@ $cta_url = home_url( '/kt-tyrimai/' );
 	hidden
 >
 	<div class="site-header__mobile-panel-inner">
-		<img
-			class="site-header__mobile-logo"
-			src="<?php echo esc_url( $logo_light_url ); ?>"
-			alt="<?php echo esc_attr( $logo_alt ); ?>"
-			width="240"
-			height="48"
-			decoding="async"
-		/>
-
 		<nav aria-label="<?php esc_attr_e( 'Mobile Navigation', 'optimalu-e-scan' ); ?>">
 			<?php
 			wp_nav_menu(
@@ -127,7 +125,7 @@ $cta_url = home_url( '/kt-tyrimai/' );
 					'menu_id'        => 'primary-menu-mobile',
 					'menu_class'     => 'site-header__mobile-menu',
 					'fallback_cb'    => false,
-					'depth'          => 1,
+					'depth'          => 2,
 				)
 			);
 			?>
@@ -139,7 +137,7 @@ $cta_url = home_url( '/kt-tyrimai/' );
 	</div>
 </div>
 
-<?php if ( $is_home_header ) : ?>
+<?php if ( $is_overlay_header ) : ?>
 <script>
 (function () {
 	var header = document.getElementById('masthead');

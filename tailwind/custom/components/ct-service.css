@@ -1,0 +1,536 @@
+/**
+ * Shared CT service page.
+ */
+
+.ct-service-hero,
+.ct-service-intro,
+.ct-service-exams,
+.ct-service-process,
+.ct-service-prep,
+.ct-service-gallery,
+.ct-service-faq,
+.ct-service-cta {
+	--ct-primary: #344966;
+	--ct-muted: #777779;
+	--ct-secondary: #b4cbeb;
+	--ct-accent: #ecdcb0;
+	--ct-beige: #f5f1eb;
+}
+
+.ct-service-kicker {
+	@apply m-0 text-[10px] font-semibold tracking-[0.38em] uppercase;
+	color: var(--ct-muted);
+}
+
+.ct-service-kicker--on-dark {
+	color: var(--ct-secondary);
+}
+
+.ct-service-heading {
+	@apply mt-4 mb-0 text-[54px] leading-[0.98] font-semibold lg:text-[46px] md:text-[38px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--ct-primary);
+}
+
+.ct-service-heading--light {
+	@apply text-white;
+}
+
+.ct-service-lede {
+	@apply m-0 text-[15px] leading-[1.75];
+	color: var(--ct-muted);
+}
+
+.ct-service-lede--light {
+	color: rgb(255 255 255 / 0.55);
+}
+
+/* Hero */
+.ct-service-hero {
+	@apply relative overflow-x-clip pt-44 pb-28 lg:pt-36 lg:pb-20 md:pt-32 md:pb-16;
+	background-color: var(--ct-primary);
+}
+
+.ct-service-hero::before {
+	content: "";
+	@apply pointer-events-none absolute inset-0;
+	background: linear-gradient(to bottom right, #3d5578, #344966, #1e3148);
+}
+
+.ct-service-hero__inner {
+	@apply relative mx-auto max-w-[1280px] px-14 lg:px-6 md:px-5;
+}
+
+.ct-service-hero__breadcrumb {
+	@apply mb-7;
+}
+
+.ct-service-hero__breadcrumb-list {
+	@apply m-0 flex min-w-0 list-none flex-wrap items-center gap-2 p-0 text-[10px] font-semibold tracking-[0.22em] uppercase;
+	color: var(--ct-secondary);
+}
+
+.ct-service-hero__breadcrumb-list li:not(:last-child)::after {
+	content: "";
+	@apply ml-2 inline-block h-1.5 w-1.5 rotate-45 border-t border-r border-white/25;
+	vertical-align: 1px;
+}
+
+.ct-service-hero__breadcrumb-list a {
+	@apply shrink-0 text-inherit no-underline transition-colors;
+}
+
+.ct-service-hero__breadcrumb-list a:hover {
+	color: #fff;
+}
+
+.ct-service-hero__breadcrumb-list [aria-current="page"] {
+	@apply truncate font-semibold tracking-normal normal-case;
+	color: rgb(255 255 255 / 0.45);
+}
+
+.ct-service-hero__title {
+	@apply m-0 max-w-[16ch] text-[80px] leading-[0.92] font-bold text-white lg:text-[62px] md:text-[48px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.ct-service-hero__title-main {
+	@apply block;
+}
+
+.ct-service-hero__title-highlight {
+	@apply mt-1 block font-normal italic;
+	color: var(--ct-accent);
+}
+
+.ct-service-hero__footer {
+	@apply mt-8 grid max-w-[900px] grid-cols-[1fr_auto] items-end gap-8 lg:grid-cols-1;
+}
+
+.ct-service-hero__description {
+	@apply m-0 max-w-[590px] text-[17px] leading-[1.75] lg:text-[15px];
+	color: rgb(255 255 255 / 0.45);
+}
+
+.ct-service-hero__actions {
+	@apply flex flex-wrap gap-3;
+}
+
+.ct-service-hero__button {
+	@apply inline-flex items-center gap-2 px-6 py-3.5 text-sm no-underline transition-colors;
+}
+
+.ct-service-hero__button--primary {
+	@apply font-bold;
+	background-color: var(--ct-accent);
+	color: var(--ct-primary);
+}
+
+.ct-service-hero__button--primary:hover {
+	background-color: #fff;
+}
+
+.ct-service-hero__button--secondary {
+	@apply border border-white/25 font-semibold text-white;
+}
+
+.ct-service-hero__button--secondary:hover {
+	@apply border-white/60;
+}
+
+.ct-service-hero::after {
+	content: "";
+	@apply absolute bottom-0 left-14 h-[3px] w-16 lg:left-6 md:left-5;
+	background-color: rgb(236 220 176 / 0.5);
+}
+
+/* About + featured */
+.ct-service-intro {
+	@apply overflow-visible bg-white pt-28 pb-32 lg:pt-20 lg:pb-24 md:pt-16 md:pb-20;
+	scroll-margin-top: 6rem;
+}
+
+.ct-service-intro__inner {
+	@apply mx-auto grid max-w-[1280px] grid-cols-[0.88fr_1.12fr] items-center gap-24 px-14 lg:grid-cols-1 lg:gap-14 lg:px-6 md:px-5;
+}
+
+.ct-service-featured {
+	@apply relative;
+}
+
+.ct-service-featured__figure {
+	@apply m-0 overflow-hidden;
+	aspect-ratio: 4 / 5;
+	background-color: #e8edf2;
+}
+
+.ct-service-featured__image {
+	@apply h-full w-full object-cover;
+	filter: saturate(0.82);
+}
+
+.ct-service-featured__badge {
+	@apply absolute -right-5 -bottom-5 px-6 py-4 md:right-0;
+	background-color: var(--ct-accent);
+}
+
+.ct-service-featured__badge-eyebrow {
+	@apply m-0 text-[10px] font-semibold tracking-[0.28em] uppercase;
+	color: rgb(52 73 102 / 0.6);
+}
+
+.ct-service-featured__badge-text {
+	@apply mt-1 mb-0 text-2xl leading-none font-semibold;
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--ct-primary);
+}
+
+.ct-service-about__copy {
+	@apply mt-8;
+}
+
+.ct-service-about .ct-service-heading {
+	@apply mb-8;
+}
+
+.ct-service-about__text {
+	@apply mb-5 text-[15px] leading-[1.85];
+	color: var(--ct-muted);
+}
+
+.ct-service-about__text:last-child {
+	@apply mb-0;
+}
+
+.ct-service-about__note {
+	@apply mt-9 border-l-2 px-5 py-4;
+	border-color: var(--ct-secondary);
+	background-color: rgb(180 203 235 / 0.1);
+}
+
+.ct-service-about__note p {
+	@apply m-0 text-sm leading-relaxed;
+	color: var(--ct-primary);
+}
+
+/* Exams */
+.ct-service-exams {
+	@apply py-28 lg:py-20 md:py-16;
+	background-color: var(--ct-beige);
+}
+
+.ct-service-exams__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6 md:px-5;
+}
+
+.ct-service-exams__intro {
+	@apply mb-10 grid grid-cols-[0.8fr_1.2fr] items-end gap-8 border-b pb-10 lg:grid-cols-1;
+	border-color: rgb(52 73 102 / 0.15);
+}
+
+.ct-service-exams__intro .ct-service-lede {
+	@apply max-w-2xl lg:justify-self-start;
+	justify-self: end;
+}
+
+.ct-service-exams__list {
+	@apply m-0 list-none p-0;
+}
+
+.ct-service-exams__item {
+	@apply grid grid-cols-[64px_0.8fr_1.2fr] items-start gap-4 border-b py-9 md:grid-cols-[48px_1fr] md:py-7;
+	border-color: rgb(52 73 102 / 0.12);
+}
+
+.ct-service-exams__number {
+	@apply text-2xl italic;
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--ct-secondary);
+}
+
+.ct-service-exams__title {
+	@apply m-0 pr-6 text-base leading-snug font-bold md:col-span-1 md:pr-0;
+	color: var(--ct-primary);
+}
+
+.ct-service-exams__text {
+	@apply m-0 text-sm leading-[1.75];
+	color: var(--ct-muted);
+}
+
+.ct-service-exams__body {
+	display: contents;
+}
+
+@media (max-width: 767px) {
+	.ct-service-exams__body {
+		@apply col-span-1 col-start-2 flex flex-col gap-2;
+		display: flex;
+	}
+}
+
+/* Process */
+.ct-service-process {
+	@apply py-28 text-white lg:py-20 md:py-16;
+	background-color: var(--ct-primary);
+}
+
+.ct-service-process__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6 md:px-5;
+}
+
+.ct-service-process__intro {
+	@apply mb-16 grid grid-cols-[0.8fr_1.2fr] items-end gap-8 border-b border-white/15 pb-10 lg:mb-12 lg:grid-cols-1;
+}
+
+.ct-service-process__intro .ct-service-lede {
+	@apply max-w-xl lg:justify-self-start;
+	justify-self: end;
+}
+
+.ct-service-process .ct-service-heading {
+	@apply text-[50px] font-semibold lg:text-[40px];
+}
+
+.ct-service-process__list {
+	@apply relative m-0 grid list-none grid-cols-4 gap-0 p-0 lg:grid-cols-2 lg:gap-9 md:grid-cols-1;
+}
+
+.ct-service-process__list::before {
+	content: "";
+	@apply pointer-events-none absolute top-[29px] right-0 left-0 hidden h-px bg-white/15 lg:hidden;
+	display: block;
+}
+
+@media (max-width: 1023px) {
+	.ct-service-process__list::before {
+		display: none;
+	}
+}
+
+.ct-service-process__item {
+	@apply relative border-r border-white/12 px-7 first:pl-0 last:border-0 last:pr-0 lg:border-0 lg:px-0;
+}
+
+.ct-service-process__number {
+	@apply relative z-10 flex size-[58px] items-center justify-center border text-2xl italic;
+	border-color: rgb(180 203 235 / 0.55);
+	background-color: var(--ct-primary);
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--ct-accent);
+}
+
+.ct-service-process__title {
+	@apply mt-7 mb-0 max-w-[190px] text-[15px] leading-snug font-bold text-white;
+}
+
+.ct-service-process__text {
+	@apply mt-4 mb-0 text-sm leading-[1.75];
+	color: rgb(255 255 255 / 0.52);
+}
+
+/* Preparation */
+.ct-service-prep {
+	@apply bg-white py-28 lg:py-20 md:py-16;
+}
+
+.ct-service-prep__inner {
+	@apply mx-auto grid max-w-[1280px] grid-cols-[minmax(0,22.5rem)_minmax(0,1fr)] items-start gap-20 px-14 lg:grid-cols-1 lg:gap-12 lg:px-6 md:px-5;
+}
+
+.ct-service-prep__intro {
+	position: static;
+	align-self: start;
+	min-width: 0;
+}
+
+.ct-service-prep__intro .ct-service-lede {
+	@apply mt-7 max-w-md;
+}
+
+.ct-service-prep__content {
+	min-width: 0;
+}
+
+.ct-service-prep__grid {
+	@apply grid grid-cols-2 gap-x-10 gap-y-0 md:grid-cols-1;
+}
+
+.ct-service-prep__card {
+	@apply border-t py-7;
+	border-color: rgb(52 73 102 / 0.15);
+}
+
+.ct-service-prep__card:nth-child(3) {
+	@apply col-span-2 md:col-span-1;
+}
+
+.ct-service-prep__card-heading {
+	@apply flex items-center gap-3;
+}
+
+.ct-service-prep__card-icon {
+	@apply flex size-6 shrink-0 items-center justify-center;
+	background-color: rgb(180 203 235 / 0.2);
+	color: var(--ct-primary);
+}
+
+.ct-service-prep__card-title {
+	@apply m-0 text-sm font-bold;
+	color: var(--ct-primary);
+}
+
+.ct-service-prep__card-text {
+	@apply mt-4 mb-0 text-sm leading-[1.75];
+	color: var(--ct-muted);
+}
+
+.ct-service-prep__highlight {
+	@apply mt-3 grid grid-cols-[auto_1fr] items-start gap-5 p-8 md:p-6;
+	background-color: rgb(236 220 176 / 0.45);
+}
+
+.ct-service-prep__highlight-icon {
+	@apply mt-0.5 shrink-0;
+	color: var(--ct-primary);
+}
+
+.ct-service-prep__highlight-copy {
+	min-width: 0;
+}
+
+.ct-service-prep__highlight-kicker {
+	@apply m-0 text-[10px] font-semibold tracking-[0.3em] uppercase;
+	color: rgb(52 73 102 / 0.55);
+}
+
+.ct-service-prep__highlight-title {
+	@apply mt-2 mb-0 text-2xl font-semibold;
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--ct-primary);
+}
+
+.ct-service-prep__highlight-text {
+	@apply mt-3 mb-0 text-sm leading-[1.75];
+	color: rgb(52 73 102 / 0.7);
+}
+
+/* Gallery */
+.ct-service-gallery {
+	@apply py-24 lg:py-16 md:py-12;
+	background-color: var(--ct-beige);
+}
+
+.ct-service-gallery__inner {
+	@apply mx-auto grid max-w-[1280px] grid-cols-[1.35fr_0.65fr] items-stretch gap-5 px-14 lg:px-6 md:grid-cols-1 md:px-5;
+}
+
+.ct-service-gallery__figure {
+	@apply m-0 h-full overflow-hidden;
+	background-color: rgb(52 73 102 / 0.1);
+}
+
+.ct-service-gallery__image {
+	@apply h-auto w-full object-cover;
+	aspect-ratio: 16 / 9;
+	filter: saturate(0.85);
+}
+
+.ct-service-gallery__figure:nth-child(2) .ct-service-gallery__image {
+	@apply h-full md:h-auto;
+	aspect-ratio: auto;
+	filter: saturate(0.8);
+	min-height: 100%;
+	object-fit: cover;
+}
+
+/* FAQ */
+.ct-service-faq {
+	@apply bg-white py-28 lg:py-20 md:py-16;
+}
+
+.ct-service-faq__inner {
+	@apply mx-auto grid max-w-[1280px] grid-cols-[0.72fr_1.28fr] gap-20 px-14 lg:grid-cols-1 lg:gap-12 lg:px-6 md:px-5;
+}
+
+.ct-service-faq__intro .ct-service-lede {
+	@apply mt-7 max-w-md text-sm;
+}
+
+.ct-service-faq__list {
+	@apply border-t;
+	border-color: rgb(52 73 102 / 0.15);
+}
+
+.ct-service-faq__item {
+	@apply border-b;
+	border-color: rgb(52 73 102 / 0.15);
+}
+
+.ct-service-faq__question {
+	@apply m-0;
+}
+
+.ct-service-faq__toggle {
+	@apply flex w-full items-center justify-between gap-4 py-6 text-left text-[15px] font-bold;
+	color: var(--ct-primary);
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
+.ct-service-faq__icon {
+	@apply shrink-0 transition-transform;
+}
+
+.ct-service-faq__toggle[aria-expanded="true"] .ct-service-faq__icon {
+	transform: rotate(180deg);
+}
+
+.ct-service-faq__panel {
+	@apply max-w-2xl pr-8 pb-6 text-sm leading-[1.8];
+	color: var(--ct-muted);
+}
+
+.ct-service-faq__panel p {
+	@apply m-0;
+}
+
+/* CTA */
+.ct-service-cta {
+	@apply py-20 lg:py-16 md:py-12;
+	background-color: var(--ct-accent);
+}
+
+.ct-service-cta__inner {
+	@apply mx-auto flex max-w-[1280px] items-end justify-between gap-12 px-14 lg:flex-col lg:items-start lg:gap-8 lg:px-6 md:px-5;
+}
+
+.ct-service-cta__copy {
+	@apply min-w-0 max-w-[46rem] flex-1;
+}
+
+.ct-service-cta__eyebrow {
+	@apply m-0 text-[10px] font-semibold tracking-[0.38em] uppercase;
+	color: rgb(52 73 102 / 0.6);
+}
+
+.ct-service-cta__title {
+	@apply mt-4 mb-0 text-[54px] leading-none font-semibold lg:text-[42px] md:text-[36px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--ct-primary);
+}
+
+.ct-service-cta__description {
+	@apply mt-5 mb-0 max-w-xl text-[15px] leading-relaxed;
+	color: rgb(52 73 102 / 0.65);
+}
+
+.ct-service-cta__button {
+	@apply inline-flex shrink-0 items-center justify-center gap-2 px-7 py-4 text-sm font-bold text-white no-underline transition-colors;
+	background-color: var(--ct-primary);
+}
+
+.ct-service-cta__button:hover {
+	background-color: #2c3e50;
+}

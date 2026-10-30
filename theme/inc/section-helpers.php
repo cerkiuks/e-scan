@@ -5,10 +5,6 @@
  * @package optimalu-e-scan
  */
 
-if ( ! defined( 'OPTIMALU_E_SCAN_SPECIALISTS_MAX_SLOTS' ) ) {
-	define( 'OPTIMALU_E_SCAN_SPECIALISTS_MAX_SLOTS', 12 );
-}
-
 if ( ! function_exists( 'optimalu_e_scan_get_section_field' ) ) {
 	/**
 	 * Read an ACF field for a specific page/post.
@@ -71,7 +67,18 @@ if ( ! function_exists( 'optimalu_e_scan_is_allowed_google_maps_embed_url' ) ) {
 			return false;
 		}
 
-		return is_string( $path ) && false !== strpos( $path, '/maps/embed' );
+		if ( is_string( $path ) && false !== strpos( $path, '/maps/embed' ) ) {
+			return true;
+		}
+
+		$query = wp_parse_url( $url, PHP_URL_QUERY );
+		parse_str( (string) $query, $args );
+
+		return 'maps.google.com' === $host
+			&& is_string( $path )
+			&& '/maps' === untrailingslashit( $path )
+			&& isset( $args['output'] )
+			&& 'embed' === $args['output'];
 	}
 }
 
@@ -79,13 +86,17 @@ if ( ! function_exists( 'optimalu_e_scan_get_contact_map_iframe' ) ) {
 	/**
 	 * Build a sanitized Google Maps iframe from embed code or URL.
 	 *
-	 * @param string $embed_raw Raw iframe HTML or embed URL.
+	 * @param string $embed_raw     Raw iframe HTML or embed URL.
+	 * @param string $title         Iframe title attribute.
+	 * @param string $iframe_class  CSS class for the iframe.
 	 * @return string
 	 */
-	function optimalu_e_scan_get_contact_map_iframe( $embed_raw ) {
+	function optimalu_e_scan_get_contact_map_iframe( $embed_raw, $title = '', $iframe_class = 'contact__map-iframe' ) {
 		$default_src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2301.3863487!2d25.2796524!3d54.6871551!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd9407b0fb6e8b%3A0x7e8fd6e6a6aaf6f8!2sGedimino%20pr.%2028%2C%20Vilnius%2011103%20Lietuva!5e0!3m2!1slt!2slt!4v1718450000000!5m2!1slt!2slt';
 		$embed_raw   = trim( (string) $embed_raw );
 		$src         = '';
+		$title       = '' !== trim( (string) $title ) ? trim( (string) $title ) : __( 'Klinikos vieta žemėlapyje', 'optimalu-e-scan' );
+		$iframe_class = '' !== trim( (string) $iframe_class ) ? trim( (string) $iframe_class ) : 'contact__map-iframe';
 
 		if ( '' === $embed_raw ) {
 			$src = $default_src;
@@ -124,9 +135,10 @@ if ( ! function_exists( 'optimalu_e_scan_get_contact_map_iframe' ) ) {
 		}
 
 		return sprintf(
-			'<iframe class="contact__map-iframe" src="%s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="%s"></iframe>',
+			'<iframe class="%s" src="%s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="%s"></iframe>',
+			esc_attr( $iframe_class ),
 			esc_url( $src ),
-			esc_attr__( 'Klinikos vieta žemėlapyje', 'optimalu-e-scan' )
+			esc_attr( $title )
 		);
 	}
 }
@@ -145,45 +157,5 @@ if ( ! function_exists( 'optimalu_e_scan_get_contact_address_lines' ) ) {
 		$lines = array_filter( $lines );
 
 		return array_values( $lines );
-	}
-}
-
-if ( ! function_exists( 'optimalu_e_scan_resolve_specialist_photo' ) ) {
-	/**
-	 * Resolve specialist photo URL and alt text from ACF/raw values.
-	 *
-	 * @param mixed  $photo_raw Raw photo field value.
-	 * @param string $name      Specialist name used for alt fallback.
-	 * @return array{photo_url: string, photo_alt: string}
-	 */
-	function optimalu_e_scan_resolve_specialist_photo( $photo_raw, $name = '' ) {
-		$photo_alt = $name ? $name : __( 'Specialistas', 'optimalu-e-scan' );
-		$photo_url = '';
-		$photo_id  = 0;
-
-		if ( is_array( $photo_raw ) ) {
-			if ( ! empty( $photo_raw['url'] ) ) {
-				$photo_url = $photo_raw['url'];
-				$photo_alt = ! empty( $photo_raw['alt'] ) ? $photo_raw['alt'] : $photo_alt;
-			}
-
-			if ( ! empty( $photo_raw['ID'] ) ) {
-				$photo_id = (int) $photo_raw['ID'];
-			}
-		} elseif ( is_numeric( $photo_raw ) || ( is_string( $photo_raw ) && ctype_digit( $photo_raw ) ) ) {
-			$photo_id = (int) $photo_raw;
-		} elseif ( is_string( $photo_raw ) && filter_var( $photo_raw, FILTER_VALIDATE_URL ) ) {
-			$photo_url = $photo_raw;
-		}
-
-		if ( $photo_id && ! $photo_url ) {
-			$photo_url = wp_get_attachment_image_url( $photo_id, 'large' );
-			$photo_alt = get_post_meta( $photo_id, '_wp_attachment_image_alt', true ) ?: $photo_alt;
-		}
-
-		return array(
-			'photo_url' => $photo_url,
-			'photo_alt' => $photo_alt,
-		);
 	}
 }

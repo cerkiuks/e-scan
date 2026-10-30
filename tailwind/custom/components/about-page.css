@@ -7,6 +7,7 @@
 .about-page-timeline,
 .about-page-values,
 .about-page-stats,
+.about-page-gallery,
 .about-page-cta {
 	--about-primary: #344966;
 	--about-muted: #777779;
@@ -17,7 +18,7 @@
 
 /* Hero */
 .about-page-hero {
-	@apply relative py-28 lg:py-20 md:py-16;
+	@apply relative pt-44 pb-28 lg:pt-36 lg:pb-20 md:pt-32 md:pb-16;
 	background-color: var(--about-primary);
 }
 
@@ -248,6 +249,110 @@
 .about-page-stats__text {
 	@apply m-0 text-sm leading-relaxed;
 	color: var(--about-muted);
+}
+
+/* Gallery */
+.about-page-gallery {
+	@apply overflow-x-clip pt-4 pb-24 lg:pb-16 md:pb-12;
+	background-color: #f5f1eb;
+}
+
+.about-page-gallery__inner {
+	@apply relative mx-auto max-w-[1280px] px-14 lg:px-6 md:px-5;
+}
+
+.about-page-gallery__carousel {
+	@apply relative;
+}
+
+.about-page-gallery__viewport {
+	@apply overflow-hidden;
+}
+
+.about-page-gallery__track {
+	@apply m-0 flex list-none p-0;
+	gap: 1.25rem;
+	will-change: transform;
+	touch-action: pan-y;
+}
+
+.about-page-gallery__slide {
+	@apply min-w-0 shrink-0 grow-0;
+	flex: 0 0 42%;
+}
+
+@media (max-width: 1023px) {
+	.about-page-gallery__slide {
+		flex-basis: 58%;
+	}
+}
+
+@media (max-width: 767px) {
+	.about-page-gallery__track {
+		gap: 0.75rem;
+	}
+
+	.about-page-gallery__slide {
+		flex-basis: 86%;
+	}
+}
+
+.about-page-gallery.is-single .about-page-gallery__slide {
+	flex-basis: 100%;
+}
+
+.about-page-gallery__figure {
+	@apply m-0 overflow-hidden;
+	aspect-ratio: 3 / 2;
+	background-color: rgb(52 73 102 / 0.06);
+}
+
+.about-page-gallery__image {
+	@apply h-full w-full object-cover;
+}
+
+.about-page-gallery__controls {
+	@apply pointer-events-none absolute inset-0;
+}
+
+.about-page-gallery__nav {
+	@apply pointer-events-auto absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center border transition-colors;
+	color: var(--about-primary);
+	border-color: rgb(52 73 102 / 0.18);
+	background-color: rgb(255 255 255 / 0.86);
+}
+
+.about-page-gallery__nav:hover {
+	border-color: var(--about-secondary);
+}
+
+.about-page-gallery__nav:focus-visible {
+	outline: 2px solid var(--about-primary);
+	outline-offset: 2px;
+}
+
+.about-page-gallery__nav--prev {
+	left: 0.75rem;
+}
+
+.about-page-gallery__nav--next {
+	right: 0.75rem;
+}
+
+@media (max-width: 767px) {
+	.about-page-gallery__controls {
+		@apply pointer-events-none static mt-4 flex items-center justify-center gap-3;
+	}
+
+	.about-page-gallery__nav {
+		@apply pointer-events-auto static translate-y-0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.about-page-gallery__track {
+		transition: none !important;
+	}
 }
 
 /* CTA */

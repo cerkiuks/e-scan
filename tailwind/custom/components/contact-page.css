@@ -1,0 +1,244 @@
+/**
+ * Contact page.
+ */
+
+.contact-page-hero,
+.contact-page-details,
+.contact-page-map {
+	--cp-primary: #344966;
+	--cp-muted: #777779;
+	--cp-secondary: #b4cbeb;
+	--cp-accent: #ecdcb0;
+	--cp-beige: #f5f1eb;
+	--cp-border: #e6e2db;
+}
+
+.contact-page-kicker {
+	@apply m-0 text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--cp-muted);
+}
+
+.contact-page-heading {
+	@apply mt-5 mb-10 text-[48px] leading-[1.04] font-bold lg:text-[36px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	color: var(--cp-primary);
+}
+
+.contact-page-heading__accent {
+	@apply block font-normal italic;
+	color: var(--cp-muted);
+}
+
+.contact-page-hero {
+	@apply relative overflow-hidden pt-44 pb-32 lg:pt-36 lg:pb-24 md:pt-32 md:pb-20;
+	background-color: var(--cp-primary);
+}
+
+.contact-page-hero::before {
+	content: "";
+	@apply pointer-events-none absolute inset-0;
+	background: linear-gradient(to bottom right, #3d5578, #344966, #1e3148);
+}
+
+.contact-page-hero__dots {
+	@apply pointer-events-none absolute top-24 right-10 grid grid-cols-6 gap-2.5 lg:hidden;
+	opacity: 0.12;
+}
+
+.contact-page-hero__dots span {
+	@apply block h-1.5 w-1.5 rounded-full;
+	background-color: var(--cp-secondary);
+}
+
+.contact-page-hero__inner {
+	@apply relative mx-auto max-w-[1280px] px-14 lg:px-6 md:px-5;
+}
+
+.contact-page-hero__eyebrow {
+	@apply mb-6 text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--cp-secondary);
+}
+
+.contact-page-hero__title {
+	@apply m-0 max-w-[48rem] text-[80px] leading-[0.92] font-bold text-white lg:text-[52px] md:text-[44px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.contact-page-hero__title em {
+	@apply mt-1 block font-normal italic;
+	color: var(--cp-accent);
+}
+
+.contact-page-hero__description {
+	@apply mt-8 mb-0 max-w-[540px] text-[17px] leading-relaxed lg:text-base;
+	color: rgb(255 255 255 / 0.45);
+}
+
+.contact-page-hero::after {
+	content: "";
+	@apply absolute bottom-0 left-14 h-[3px] w-16 lg:left-6 md:left-5;
+	background-color: rgb(236 220 176 / 0.5);
+}
+
+.contact-page-details {
+	@apply bg-white py-32 lg:py-20 md:py-16;
+}
+
+.contact-page-details__inner {
+	@apply mx-auto max-w-[1280px] px-14 lg:px-6 md:px-5;
+}
+
+.contact-page-details__grid {
+	@apply grid grid-cols-2 gap-24 lg:grid-cols-1 lg:gap-16;
+}
+
+.contact-page-details__company-list {
+	@apply m-0 list-none space-y-6 p-0;
+}
+
+.contact-page-details__company-item {
+	@apply flex items-start gap-4 border-b pb-6;
+	border-color: var(--cp-border);
+}
+
+.contact-page-details__company-item:last-child {
+	@apply border-b-0 pb-0;
+}
+
+.contact-page-details__company-icon {
+	@apply mt-1 shrink-0;
+	color: var(--cp-secondary);
+}
+
+.contact-page-details__label {
+	@apply mb-1 text-xs tracking-wider uppercase;
+	color: var(--cp-muted);
+}
+
+.contact-page-details__label--bank {
+	@apply mb-3;
+}
+
+.contact-page-details__value {
+	@apply m-0 font-semibold;
+	color: var(--cp-primary);
+}
+
+.contact-page-details__value--mono {
+	@apply font-mono text-sm;
+}
+
+.contact-page-details__bank {
+	@apply mt-10 border-l-4 p-6;
+	background-color: var(--cp-beige);
+	border-color: var(--cp-secondary);
+}
+
+.contact-page-details__bank-row {
+	@apply space-y-0;
+}
+
+.contact-page-details__bank-row + .contact-page-details__bank-row {
+	@apply mt-2;
+}
+
+.contact-page-details__bank-label {
+	@apply m-0 text-xs;
+	color: var(--cp-muted);
+}
+
+.contact-page-details__faq-list {
+	@apply space-y-6;
+}
+
+.contact-page-details__faq-item {
+	@apply border-b pb-6;
+	border-color: var(--cp-border);
+}
+
+.contact-page-details__faq-item:last-child {
+	@apply border-b-0 pb-0;
+}
+
+.contact-page-details__faq-question {
+	@apply mb-3 text-lg font-bold;
+	color: var(--cp-primary);
+}
+
+.contact-page-details__faq-answer {
+	@apply m-0 text-sm leading-relaxed;
+	color: var(--cp-muted);
+}
+
+.contact-page-map__layout {
+	@apply grid grid-cols-2 lg:grid-cols-1;
+}
+
+.contact-page-map__canvas {
+	@apply relative h-[650px] bg-[#f5f1eb] lg:h-[500px];
+}
+
+.contact-page-map__iframe {
+	@apply absolute inset-0 block h-full w-full border-0;
+}
+
+.contact-page-map__panel {
+	@apply flex flex-col justify-center px-16 py-20 lg:px-10 lg:py-16 md:px-5;
+	background-color: var(--cp-primary);
+}
+
+.contact-page-map__eyebrow {
+	@apply mb-8 text-[10px] font-semibold tracking-[0.4em] uppercase;
+	color: var(--cp-secondary);
+}
+
+.contact-page-map__title {
+	@apply mb-12 text-[44px] leading-[1.08] font-bold text-white lg:text-[34px];
+	font-family: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.contact-page-map__title em {
+	@apply block font-normal italic;
+	color: var(--cp-secondary);
+}
+
+.contact-page-map__list {
+	@apply m-0 list-none space-y-7 p-0;
+}
+
+.contact-page-map__item {
+	@apply flex items-start gap-4;
+}
+
+.contact-page-map__icon {
+	@apply flex h-10 w-10 shrink-0 items-center justify-center rounded-full;
+	background-color: rgb(255 255 255 / 0.1);
+	color: var(--cp-accent);
+}
+
+.contact-page-map__item-body {
+	@apply min-w-0;
+}
+
+.contact-page-map__item-label {
+	@apply mb-0.5 text-[9px] font-semibold tracking-[0.35em] uppercase;
+	color: rgb(255 255 255 / 0.35);
+}
+
+.contact-page-map__item-value,
+.contact-page-map__item-link {
+	@apply m-0 block font-medium text-white no-underline;
+}
+
+.contact-page-map__item-link {
+	@apply transition-colors;
+}
+
+.contact-page-map__item-link:hover {
+	color: var(--cp-accent);
+}
+
+.contact-page-map__item-secondary {
+	@apply mt-0.5 mb-0 text-sm;
+	color: rgb(255 255 255 / 0.4);
+}

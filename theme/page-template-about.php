@@ -18,7 +18,7 @@ while ( have_posts() ) :
 	get_template_part( 'template-parts/sections/about-page/timeline' );
 	get_template_part( 'template-parts/sections/about-page/values' );
 	get_template_part( 'template-parts/sections/about-page/stats' );
-	get_template_part( 'template-parts/sections/specialists' );
+	get_template_part( 'template-parts/sections/about-page/gallery' );
 	get_template_part( 'template-parts/sections/about-page/cta' );
 endwhile;
 ?>

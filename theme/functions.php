@@ -132,7 +132,43 @@ endif;
 add_action( 'after_setup_theme', 'optimalu_e_scan_setup' );
 
 /**
- * Add shared classes to primary navigation links.
+ * Whether a nav menu is the mobile primary header menu.
+ *
+ * @param stdClass|array $args Menu arguments.
+ * @return bool
+ */
+function optimalu_e_scan_is_mobile_primary_menu( $args ) {
+	$args = (object) $args;
+
+	return isset( $args->theme_location, $args->menu_class )
+		&& 'menu-1' === $args->theme_location
+		&& false !== strpos( $args->menu_class, 'site-header__mobile-menu' );
+}
+
+/**
+ * Desktop primary-nav walker that prepends the dropdown heading.
+ */
+class Optimalu_E_Scan_Desktop_Nav_Walker extends Walker_Nav_Menu {
+	/**
+	 * Starts the list before the elements are added.
+	 *
+	 * @param string   $output Used to append additional content (passed by reference).
+	 * @param int      $depth  Depth of menu item.
+	 * @param stdClass $args   An object of wp_nav_menu() arguments.
+	 */
+	public function start_lvl( &$output, $depth = 0, $args = null ) {
+		parent::start_lvl( $output, $depth, $args );
+
+		if ( 0 !== $depth ) {
+			return;
+		}
+
+		$output .= '<li class="site-header__submenu-heading" aria-hidden="true">' . esc_html__( 'KT tyrimų sritys', 'optimalu-e-scan' ) . '</li>';
+	}
+}
+
+/**
+ * Add shared classes to navigation links.
  *
  * @param array    $atts      Link attributes.
  * @param WP_Post  $menu_item Menu item object.
@@ -141,13 +177,35 @@ add_action( 'after_setup_theme', 'optimalu_e_scan_setup' );
  * @return array
  */
 function optimalu_e_scan_nav_menu_link_attributes( $atts, $menu_item, $args, $depth ) {
-	if ( 0 !== $depth || ! isset( $args->theme_location ) ) {
+	if ( ! isset( $args->theme_location ) ) {
 		return $atts;
 	}
 
 	$existing = isset( $atts['class'] ) ? $atts['class'] . ' ' : '';
-	$classes  = array(
-		'menu-1' => 'site-header__menu-link',
+	$is_mobile_primary = optimalu_e_scan_is_mobile_primary_menu( $args );
+
+	if ( 'menu-1' === $args->theme_location ) {
+		if ( 0 === $depth ) {
+			$atts['class'] = $existing . 'site-header__menu-link';
+
+			if ( in_array( 'menu-item-has-children', (array) $menu_item->classes, true ) ) {
+				$atts['aria-haspopup'] = 'true';
+				$atts['aria-expanded'] = 'false';
+			}
+		} elseif ( $is_mobile_primary ) {
+			$atts['class'] = $existing . 'site-header__mobile-submenu-link';
+		} else {
+			$atts['class'] = $existing . 'site-header__submenu-link';
+		}
+
+		return $atts;
+	}
+
+	if ( 0 !== $depth ) {
+		return $atts;
+	}
+
+	$classes = array(
 		'menu-2' => 'site-footer__nav-link',
 		'menu-3' => 'site-footer__legal-link',
 	);
@@ -159,6 +217,64 @@ function optimalu_e_scan_nav_menu_link_attributes( $atts, $menu_item, $args, $de
 	return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'optimalu_e_scan_nav_menu_link_attributes', 10, 4 );
+
+/**
+ * Add submenu classes for the primary header menu.
+ *
+ * @param array    $classes Submenu classes.
+ * @param stdClass $args    Menu arguments.
+ * @param int      $depth   Menu depth.
+ * @return array
+ */
+function optimalu_e_scan_nav_menu_submenu_css_class( $classes, $args, $depth ) {
+	if ( ! isset( $args->theme_location ) || 'menu-1' !== $args->theme_location ) {
+		return $classes;
+	}
+
+	if ( optimalu_e_scan_is_mobile_primary_menu( $args ) ) {
+		$classes[] = 'site-header__mobile-submenu';
+	} else {
+		$classes[] = 'site-header__submenu';
+	}
+
+	return $classes;
+}
+add_filter( 'nav_menu_submenu_css_class', 'optimalu_e_scan_nav_menu_submenu_css_class', 10, 3 );
+
+/**
+ * Add a dropdown indicator and mobile accordion toggle for parent items.
+ *
+ * @param string   $item_output Menu item HTML.
+ * @param WP_Post  $item        Menu item object.
+ * @param int      $depth       Menu depth.
+ * @param stdClass $args        Menu arguments.
+ * @return string
+ */
+function optimalu_e_scan_nav_menu_start_el( $item_output, $item, $depth, $args ) {
+	if ( ! isset( $args->theme_location ) || 'menu-1' !== $args->theme_location || 0 !== $depth ) {
+		return $item_output;
+	}
+
+	if ( ! in_array( 'menu-item-has-children', (array) $item->classes, true ) ) {
+		return $item_output;
+	}
+
+	$caret = '<svg class="site-header__menu-caret" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>';
+
+	if ( optimalu_e_scan_is_mobile_primary_menu( $args ) ) {
+		$label       = sprintf(
+			/* translators: %s: parent menu item title. */
+			__( 'Toggle submenu for %s', 'optimalu-e-scan' ),
+			$item->title
+		);
+		$item_output = '<span class="site-header__mobile-parent">' . $item_output . '<button type="button" class="site-header__mobile-submenu-toggle" aria-expanded="false" aria-label="' . esc_attr( $label ) . '">' . $caret . '</button></span>';
+	} else {
+		$item_output = preg_replace( '/<\/a>$/', $caret . '</a>', $item_output, 1 );
+	}
+
+	return $item_output;
+}
+add_filter( 'walker_nav_menu_start_el', 'optimalu_e_scan_nav_menu_start_el', 10, 4 );
 
 /**
  * Register widget area.
@@ -263,15 +379,20 @@ require get_template_directory() . '/inc/template-functions.php';
 /**
  * Reusable section helpers and data loaders.
  */
+require get_template_directory() . '/inc/acf-field-media-gallery.php';
 require get_template_directory() . '/inc/section-helpers.php';
 require get_template_directory() . '/inc/section-data.php';
 require get_template_directory() . '/inc/about-page-data.php';
+require get_template_directory() . '/inc/ct-service-data.php';
+require get_template_directory() . '/inc/contact-page-data.php';
 
 /**
  * Registers local ACF field groups used by theme templates.
  */
 require get_template_directory() . '/inc/acf-fields.php';
 require get_template_directory() . '/inc/acf-fields-about-page.php';
+require get_template_directory() . '/inc/acf-fields-ct-service.php';
+require get_template_directory() . '/inc/acf-fields-contact-page.php';
 
 /**
  * Footer Customizer settings.

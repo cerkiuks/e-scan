@@ -1,0 +1,64 @@
+.optimalu-media-gallery__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin: 0 0 12px;
+	padding: 0;
+	list-style: none;
+}
+
+.optimalu-media-gallery__item {
+	position: relative;
+	width: 112px;
+	margin: 0;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	cursor: move;
+}
+
+.optimalu-media-gallery__placeholder {
+	width: 112px;
+	height: 112px;
+	border: 1px dashed #b4cbeb;
+	background: #f6f7f7;
+}
+
+.optimalu-media-gallery__thumb {
+	display: block;
+	overflow: hidden;
+}
+
+.optimalu-media-gallery__thumb img {
+	display: block;
+	width: 112px;
+	height: 112px;
+	object-fit: cover;
+}
+
+.optimalu-media-gallery__alt {
+	display: block;
+	padding: 4px 6px 6px;
+	font-size: 11px;
+	line-height: 1.3;
+	color: #646970;
+}
+
+.optimalu-media-gallery__remove {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	width: 22px;
+	height: 22px;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: #1d2327;
+	color: #fff;
+	font-size: 16px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.optimalu-media-gallery__actions {
+	margin: 0 0 8px;
+}

@@ -92,13 +92,7 @@ if ( ! function_exists( 'optimalu_e_scan_get_registration_section_data' ) ) {
 	}
 }
 
-if ( ! function_exists( 'optimalu_e_scan_get_specialists_section_data' ) ) {
-	/**
-	 * Specialists section data for a page.
-	 *
-	 * @param int|null $post_id Post ID.
-	 * @return array<string, mixed>
-	 */
+if ( ! function_exists( 'optimalu_e_scan_REMOVED_PLACEHOLDER' ) ) {
 	function optimalu_e_scan_get_specialists_section_data( $post_id = null ) {
 		if ( null === $post_id ) {
 			$post_id = get_the_ID();

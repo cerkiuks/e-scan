@@ -95,44 +95,6 @@ function optimalu_e_scan_get_about_stats_slot_sub_fields( $index ) {
 }
 
 /**
- * Build about-page specialist slot sub-fields.
- *
- * @param int $index Slot index.
- * @return array<int, array<string, mixed>>
- */
-function optimalu_e_scan_get_about_specialist_slot_sub_fields( $index ) {
-	return array(
-		array(
-			'key'           => "field_optimalu_about_specialist_{$index}_photo",
-			'label'         => "Specialist {$index} photo",
-			'name'          => "specialist_{$index}_photo",
-			'type'          => 'image',
-			'return_format' => 'array',
-			'preview_size'  => 'medium',
-			'library'       => 'all',
-		),
-		array(
-			'key'   => "field_optimalu_about_specialist_{$index}_name",
-			'label' => "Specialist {$index} name",
-			'name'  => "specialist_{$index}_name",
-			'type'  => 'text',
-		),
-		array(
-			'key'   => "field_optimalu_about_specialist_{$index}_position",
-			'label' => "Specialist {$index} position",
-			'name'  => "specialist_{$index}_position",
-			'type'  => 'text',
-		),
-		array(
-			'key'   => "field_optimalu_about_specialist_{$index}_category",
-			'label' => "Specialist {$index} category",
-			'name'  => "specialist_{$index}_category",
-			'type'  => 'text',
-		),
-	);
-}
-
-/**
  * Register About page ACF fields.
  */
 function optimalu_e_scan_register_about_page_acf_fields() {
@@ -153,11 +115,6 @@ function optimalu_e_scan_register_about_page_acf_fields() {
 	$stats_sub_fields = array();
 	for ( $i = 1; $i <= OPTIMALU_E_SCAN_ABOUT_STATS_SLOTS; $i++ ) {
 		$stats_sub_fields = array_merge( $stats_sub_fields, optimalu_e_scan_get_about_stats_slot_sub_fields( $i ) );
-	}
-
-	$specialists_sub_fields = array();
-	for ( $i = 1; $i <= OPTIMALU_E_SCAN_ABOUT_SPECIALISTS_SLOTS; $i++ ) {
-		$specialists_sub_fields = array_merge( $specialists_sub_fields, optimalu_e_scan_get_about_specialist_slot_sub_fields( $i ) );
 	}
 
 	acf_add_local_field_group(
@@ -348,56 +305,17 @@ function optimalu_e_scan_register_about_page_acf_fields() {
 					'sub_fields'   => $stats_sub_fields,
 				),
 				array(
-					'key'   => 'field_optimalu_about_tab_specialists',
-					'label' => 'Specialists',
+					'key'   => 'field_optimalu_about_tab_gallery',
+					'label' => 'Nuotraukų galerija',
 					'name'  => '',
 					'type'  => 'tab',
 				),
 				array(
-					'key'   => 'field_optimalu_about_specialists_eyebrow',
-					'label' => 'Specialists eyebrow',
-					'name'  => 'about_page_specialists_eyebrow',
-					'type'  => 'text',
-				),
-				array(
-					'key'   => 'field_optimalu_about_specialists_title',
-					'label' => 'Specialists title',
-					'name'  => 'about_page_specialists_title',
-					'type'  => 'text',
-				),
-				array(
-					'key'   => 'field_optimalu_about_specialists_title_highlight',
-					'label' => 'Specialists title highlight',
-					'name'  => 'about_page_specialists_title_highlight',
-					'type'  => 'text',
-				),
-				array(
-					'key'   => 'field_optimalu_about_specialists_description',
-					'label' => 'Specialists description',
-					'name'  => 'about_page_specialists_description',
-					'type'  => 'textarea',
-					'rows'  => 3,
-				),
-				array(
-					'key'          => 'field_optimalu_about_specialists_items',
-					'label'        => 'Specialists',
-					'name'         => 'about_page_specialists_items',
-					'type'         => 'group',
-					'layout'       => 'block',
-					'instructions' => 'Up to ' . OPTIMALU_E_SCAN_ABOUT_SPECIALISTS_SLOTS . ' specialists. Leave unused slots empty.',
-					'sub_fields'   => $specialists_sub_fields,
-				),
-				array(
-					'key'   => 'field_optimalu_about_specialists_footer_link_text',
-					'label' => 'Specialists footer link text',
-					'name'  => 'about_page_specialists_footer_link_text',
-					'type'  => 'text',
-				),
-				array(
-					'key'   => 'field_optimalu_about_specialists_footer_link_url',
-					'label' => 'Specialists footer link URL',
-					'name'  => 'about_page_specialists_footer_link_url',
-					'type'  => 'url',
+					'key'          => 'field_optimalu_about_gallery',
+					'label'        => 'Klinikos nuotraukos',
+					'name'         => 'about_page_gallery',
+					'type'         => 'optimalu_media_gallery',
+					'instructions' => 'Įkelkite neribotą skaičių nuotraukų iš Medijos bibliotekos. Vilkite, kad pakeistumėte eiliškumą. Alt tekstą redaguokite atidarę nuotrauką Medijos bibliotekoje.',
 				),
 				array(
 					'key'   => 'field_optimalu_about_tab_cta',

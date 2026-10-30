@@ -307,6 +307,43 @@ if ( ! function_exists( 'optimalu_e_scan_get_about_page_specialists_data' ) ) {
 	}
 }
 
+if ( ! function_exists( 'optimalu_e_scan_get_about_page_gallery_data' ) ) {
+	/**
+	 * About page photo gallery data.
+	 *
+	 * @param int|null $post_id Post ID.
+	 * @return array<string, mixed>
+	 */
+	function optimalu_e_scan_get_about_page_gallery_data( $post_id = null ) {
+		if ( null === $post_id ) {
+			$post_id = get_the_ID();
+		}
+
+		$ids    = optimalu_e_scan_parse_media_gallery_ids( optimalu_e_scan_get_about_page_field( 'about_page_gallery', $post_id ) );
+		$images = array();
+
+		foreach ( $ids as $attachment_id ) {
+			if ( 'attachment' !== get_post_type( $attachment_id ) ) {
+				continue;
+			}
+
+			$alt = (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+			if ( '' === $alt ) {
+				$alt = (string) get_the_title( $attachment_id );
+			}
+
+			$images[] = array(
+				'id'  => $attachment_id,
+				'alt' => $alt,
+			);
+		}
+
+		return array(
+			'images' => $images,
+		);
+	}
+}
+
 if ( ! function_exists( 'optimalu_e_scan_get_about_page_cta_data' ) ) {
 	/**
 	 * About page CTA section data.
